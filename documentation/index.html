@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+	<head>
+		<!-- Google Web Fonts
+	  ================================================== -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic:400,600' rel='stylesheet' type='text/css'>
+
+		<!-- Basic Page Needs
+	  ================================================== -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--[if ie]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+
+		<title>Documentation</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut" href="images/favicon.ico" />
+
+		<!-- Mobile Specific Metas
+	  ================================================== -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<!-- CSS
+	  ================================================== -->
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/shDocumenter.css" />
+		<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" />
+
+		<!-- HTML5 Shiv
+		================================================== -->
+		<script src="js/jquery.modernizr.js"></script>
+
+	</head>
+	<body>
+
+		<section id="menu" role="complementary">
+
+			<nav id="documenter-nav" class="documenter-nav">
+
+				<a id="tm-logo" href="#"><img src="images/logo.png" alt="" /></a>
+
+				<ul class="navigation clearfix">
+				
+					<li class="current-nav"><a href="#start">Start</a></li>
+					<li><a href="#install">Installation</a></li>
+					<li><a href="#users">Manage Users</a></li>
+					<li><a href="#services">Manage Services</a></li>
+					<li><a href="#subservices">Manage Sub Services</a></li>
+					<li><a href="#shop">Manage Shop</a></li>
+					<li><a href="#history">Booking History</a></li>
+					<li><a href="#pending-withdraw">Pending Withdrawal</a></li>
+					<li><a href="#completed-withdraw">Completed Withdrawal</a></li>
+					<!--<li><a href="#home-slider">Home Page Slider</a></li>-->
+					<li><a href="#testimonials">Testimonials</a></li>
+					<!--<li><a href="#widget">Widgets</a></li>
+					<li><a href="#blog">Blog</a></li>-->
+					<li><a href="#social-login">Social Links</a></li>
+					<li><a href="#settings">Settings</a></li>					
+					<li><a href="#change-password">Change Password</a></li>			
+					<li><a href="#pages">Static Pages</a></li>
+					<li><a href="#login-register">Login / Register</a></li>
+										
+					<h2 class="sv_frontend">Frond End</h2>
+					<li><a href="#header_footer">Header & Footer</a></li>
+					<li><a href="#homepage">Home Page</a></li>
+					<li><a href="#service-providers">Service Providers</a></li>
+					<li><a href="#profile-page">Service Providers Profile</a></li>
+					<li><a href="#edit-profile">Edit Profile / Change Password</a></li>
+					<li><a href="#forgot-password">Forgot Password</a></li>
+					<li><a href="#my-booking">My Booking</a></li>
+					<li><a href="#my-order">My Order</a></li>
+					<li><a href="#my-shop">My Shop</a></li>
+					<li><a href="#my-service">My Services</a></li>
+					<li><a href="#my-gallery">My Gallery</a></li>
+					<li><a href="#withdrawal-request">Wallet Request</a></li>	
+					<li><a href="#developers">Developers</a></li>
+				</ul>
+
+			</nav><!--/ #documenter-nav-->	
+
+		</section>
+
+		<div id="documenter-content" class="documenter-content">
+
+			<section id="start">
+				<div class="heading">
+					<h6>"Thumbstack Multivendor" Documentation by "Migrateshop"</h6>
+					<div class="separator"></div>
+					<h1>"Installation & Help File - Thumbstack Multivendor Laravel script"</h1>
+				</div>
+
+				<table class="table-description">
+					<tr>
+						<td class="desc-column-1">
+							<span class="author-created">
+								Created: 22/06/2017 <br/>
+								By: Migrateshop
+							</span>
+							<span class="author-link"><a href="#">http://migrateshop.com</a></span>
+						</td>
+						<td class="desc-column-2">
+							<blockquote>
+								<span>Thank you for purchasing our theme.</span> If you have any questions that are beyond 
+								the scope of this help file, please feel free to contact us from here.<a href="https://codecanyon.net/user/migrateshop">https://codecanyon.net/user/migrateshop</a><br /> <span>Thanks so much!</span>
+							</blockquote>
+						</td>
+					</tr>
+				</table>
+			</section>
+
+			<section id="install">
+				<h3 class="tm-title">Installation</h3>				
+				<h4>Step 1:</h4>
+				 <p>Upload main zip into your hosting & then extract that zip file in same directory.</p>				 
+				 <h4>Step 2:</h4>
+				 <p>Then create a database and import SQL file into it. SQL file available in "database" folder</p>
+				<img class="bordered align-center" src="lib/1.png">				
+				<h4>Step 3:</h4>
+				 <p>Open <strong>.env</strong> its available in <strong>local </strong> folder & then change hostname, database name & password.</p>
+				<img class="bordered align-center" src="lib/2.png">	
+				<p>And Open <strong>database.php</strong> its available in <strong>local/config</strong> folder & then change hostname, database name & password.</p>
+				<img class="bordered align-center" src="lib/2a.png">	
+				
+				 <h4>Step 4:</h4>
+				 <p>Go to Admin panel <b>http://yoursite.com/admin </b></p>
+					<b>username: admin </b><br>
+					<b>password: admin</b>
+					<img class="bordered align-center" src="lib/3.png">					
+			    <h4>Step 5:</h4>
+				 <p>Then goto here: <b>http://yoursite.com/admin/settings</b></p>
+				 <p>Change site name,logo & favicon informations change here. That's all</p>
+				<img class="bordered align-center" src="lib/4.png">
+				 <h4>Step 6:</h4>
+				 <h3>Server Requirements</h3>
+				 <p>PHP version : use 5.6 and above</p>				
+			</section>
+            <hr>
+			
+				<section id="users">
+			<h4 class="sv_title">Manage Users</h4>
+				<p>1. Go to admin panel > users</p>
+				<p>2. Here you can view, add, edit, delete, search users</p>
+				<img class="bordered align-center" src="lib/5.png">
+				<hr>
+			</section>			
+			
+			<section id="services">
+			<h4 class="sv_title">Manage Services</h4>			
+				<p>1. Go to admin panel > services</p>
+				<p>2. Here you can view, add, edit, delete, search services</p>
+				<img class="bordered align-center" src="lib/6.png">
+				<hr>
+			</section>
+			
+			
+			<section id="subservices">
+			<h4 class="sv_title">Manage Sub Services</h4>			
+				<p>1. Go to admin panel > sub services</p>
+				<p>2. Here you can view, add, edit, delete, search services</p>
+				<img class="bordered align-center" src="lib/7.png">
+				<hr>
+			</section>
+			
+			<section id="shop">
+			<h4 class="sv_title">Manage Shop</h4>
+				<p>1. Go to admin panel > Shop Details</p>
+				<p>2. Here you can view, edit, delete, search shop</p>
+				<img class="bordered align-center" src="lib/8.png">
+				<hr>
+			</section>
+			
+			<section id="history">
+			<h4 class="sv_title">Booking History</h4>			
+				<p>1. Go to admin panel > Booking History</p>
+				<p>2. Here you can view and search Booking History</p>
+				<img class="bordered align-center" src="lib/9.png">			
+				<hr>
+			</section>
+			
+			<section id="pending-withdraw">
+			<h4 class="sv_title">Pending Withdrawal</h4>			
+				<p>1. Go to admin panel >Pending Withdrawal</p>
+				<p>2. Here you can view and search Pending Withdrawal</p>
+				<img class="bordered align-center" src="lib/10.png">
+				<hr>
+			</section>
+			
+			<section id="completed-withdraw">
+			<h4 class="sv_title">Completed Withdrawal</h4>			
+				<p>1. Go to admin panel >Completed Withdrawal</p>
+				<p>2. Here you can view and search Completed Withdrawal</p>
+				<img class="bordered align-center" src="lib/11.png">
+				<hr>
+			</section>
+			
+			<!--<section id="home-slider">
+			<h4 class="sv_title">Home Page Slider</h4>			
+				<p>1. Go to admin panel >Home Slider</p>
+				<p>2. Here you can view, add, update and search slider</p>
+				<img class="bordered align-center" src="lib/21.png">
+				<hr>
+			</section>-->
+			
+			<section id="testimonials">
+			<h4 class="sv_title">Testimonials</h4>			
+				<p>1. Go to admin panel >Testimonials</p>
+				<p>2. Here you can view, add, update and search testimonials</p>
+				<img class="bordered align-center" src="lib/12.png">
+				<hr>
+			</section>
+			
+			<!--<section id="widget">
+			<h4 class="sv_title">Widgets</h4>			
+				<p>1. Go to admin panel >Widgets</p>
+				<p>2. Here you can view, update Widgets</p>
+				<img class="bordered align-center" src="lib/23.png">
+				<hr>
+			</section>
+			
+			<section id="blog">
+			<h4 class="sv_title">Blog</h4>			
+				<p>1. Go to admin panel >Blog</p>
+				<p>2. Here you can view, Add, Update, Delete and search blog</p>
+				<img class="bordered align-center" src="lib/24.png">
+				<hr>
+			</section>-->
+			
+			<section id="social-login">
+			<h4 class="sv_title">Social Links</h4>			
+				<p>1. Go to admin panel >Settings</p>
+				<p>2. Here you can view and Update Social Link details</p>
+				<img class="bordered align-center" src="lib/13.png">
+				<hr>
+			</section>
+			
+			<section id="settings">
+			<h4 class="sv_title">Manage Settings</h4>			
+				<p>Manage settings & SEO keywords, description, paypal and withdrawal settings from here <b>http://yoursite.com/admin/settings</b></p>
+				<img class="bordered align-center" src="lib/14.png">
+			<hr>
+			</section>
+			
+			
+			<section id="change-password">
+			<h4 class="sv_title">Change Password</h4>			
+				<p>Change admin panel passwords from top menu</p>
+				<img class="bordered align-center" src="lib/15.png">
+			<hr>
+			</section>
+			
+			<section id="pages">
+				<h4 class="sv_title">Other static pages</h4>			
+				<p>Manage static pages from here such as About, Contact, Terms and Conditions &	Privacy Policy pages <b>http://yoursite.com/about</b> , <b>http://yoursite.com/contact & http://yoursite.com/terms_conditions</b></p>
+				<p>Admin can replace dummy contents with your original contents</p>
+				<img class="bordered align-center" src="lib/16.png">
+				<img class="bordered align-center" src="lib/17.png">
+				</section>
+				<hr>
+			<section id="login-register">
+				<h4 class="sv_title">Signin / Signup</h4>			
+				<p>Users can signin / signup from here: <b>http://yoursite.com/login</b></p>
+				<img class="bordered align-center" src="lib/18.png">
+				<img class="bordered align-center" src="lib/19.png">
+			<hr>
+			</section>
+
+		
+		
+		<section id="homepage">
+			<h4 class="sv_title">Home Page Static Content</h4>			
+				<p>Manage How works, Get more done anytime, Thousands of professionals from here <b>http://yoursite.com/local/resources/views/index.blade.php</b></p>
+				
+				<img class="bordered align-center" src="lib/35.png">
+			<img class="bordered align-center" src="lib/36.png">
+			<img class="bordered align-center" src="lib/37.png">
+				<hr>
+			
+			</section>
+		
+		<section id="header_footer">
+			<h4 class="sv_title">Header & Footer Content</h4>			
+				<p>Manage header from here <b>http://yoursite.com/local/resources/views/header.blade.php</b> </p>
+				<p>And footer from here <b>http://yoursite.com/local/resources/views/footer.blade.php</b> </p>
+				<img class="bordered align-center" src="lib/38.png">
+			<img class="bordered align-center" src="lib/39.png">
+			
+				<hr>
+			
+			</section>
+		
+		
+		
+		
+			
+			<section id="service-providers">
+			<h4 class="sv_title">Service Providers</h4>			
+				<p>1. Click Service Providers Link </p>
+				<p>2. Here you can view, book and search service providers</p>
+				<img class="bordered align-center" src="lib/20.png">
+			
+				<hr>
+			
+			</section>
+			
+			<section id="profile-page">
+			<h4 class="sv_title">Service Providers Profile Page</h4>
+				<p>1. Click View profile & Book Link </p>
+				<p>2. Here you can view full profile like services, profile, reviews, gallery and contact vendor</p>
+				<img class="bordered align-center" src="lib/21.png">
+				<img class="bordered align-center" src="lib/22.png">
+			<img class="bordered align-center" src="lib/23.png">
+			<img class="bordered align-center" src="lib/24.png">
+			<img class="bordered align-center" src="lib/25.png">
+				<hr>
+			</section>
+			
+			<section id="edit-profile">
+			<h4 class="sv_title">Edit Profile / Change Password</h4>				
+				<p> Here you can edit your profile and password</p>
+				<img class="bordered align-center" src="lib/26.png">
+				
+				<hr>			
+			</section>
+			
+			<section id="forgot-password">
+			<h4 class="sv_title">Forgot Password</h4>				
+				<p>1. Click forgot password link</p>
+				<p>2. Enter your registered email address and you can get your new password via registered email</p>
+				<img class="bordered align-center" src="lib/27.png">
+				<img class="bordered align-center" src="lib/28.png">
+				<hr>			
+			</section>
+			
+			<section id="my-booking">
+			<h4 class="sv_title">My Booking</h4>				
+				<p> Here you can view your booking history</p>
+				<img class="bordered align-center" src="lib/29.png">
+				<hr>			
+			</section>
+			
+			<section id="my-order">
+			<h4 class="sv_title">My Order</h4>				
+				<p> Here you can view your order history</p>
+				<img class="bordered align-center" src="lib/30.png">
+				<hr>			
+			</section>
+			
+			<section id="my-shop">
+			<h4 class="sv_title">My Shop</h4>				
+				<p> Here you can view your shop and edit shop details</p>
+				<img class="bordered align-center" src="lib/31.png">
+				<hr>			
+			</section>
+			
+			<section id="my-service">
+			<h4 class="sv_title">My Services</h4>				
+				<p> Here you can add,edit,delete and view your services</p>
+				<img class="bordered align-center" src="lib/32.png">
+				<hr>			
+			</section>
+			
+			<section id="my-gallery">
+			<h4 class="sv_title">My Gallery</h4>				
+				<p> Here you can add,edit,delete and view your gallery</p>
+				<img class="bordered align-center" src="lib/33.png">
+				<hr>			
+			</section>
+			
+			<section id="withdrawal-request">
+			<h4 class="sv_title">Wallet Request </h4>				
+				<p> Here you can view your shop balance and give withdraw request to admin</p>
+				<img class="bordered align-center" src="lib/34.png">
+				<hr>			
+			</section>
+			
+				<section id="developers">
+				<h4 class="sv_title">Laravel Script Developers</h4>
+				<p>Thumbstack Multivendor Laravel scripts developed by<a href="http://migrateshop.com">http://migrateshop.com</a> & <a href="http://sangvish.com"> http://sangvish.com</a></p>
+				<p>For any customization (or) custom jobs contact us through <a href="mailto:support@migrateshop.com">support@migrateshop.com</a> (or) skype: <b>sangvishtech</b> (or) <a href="http://migrateshop.com/contact-us/">http://migrateshop.com/contact-us/</a></p>
+			</section>
+			
+		</div><!--/ #documenter-content-->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+		<script src="js/jquery.easing.1.3.min.js"></script>
+		<script src="js/jquery.scrollto.min.js"></script>
+		<script src="js/setup.js"></script>
+		<script src="js/scroll.js"></script>
+		<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+		<script src="js/shCore.js"></script>
+		<script src="js/shBrushCss.js"></script>
+		<script src="js/shBrushXml.js"></script>
+		<script src="js/shBrushJScript.js"></script>
+		<script>SyntaxHighlighter.defaults['toolbar'] = false;SyntaxHighlighter.all();</script>
+		<script type="text/javascript">
+			// Call template init (optional, but faster if called manually)
+				$.template.init();	
+		</script>
+		<script src="js/custom.js"></script>
+	</body>
+</html>
