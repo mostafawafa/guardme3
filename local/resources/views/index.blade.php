@@ -46,14 +46,14 @@ $setid=1;
 		<div class="col-md-12" align="center">
 		<div class="row">
 		
-		<h1 class="headingcolor"> Consider it done. </h1>
+		<h1 class="headingcolor"> Manned Security Freelance Marketplace. </h1>
 		</div>
 		
 		
 		<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-		<h4 class="headingcolor"> From house painting to personal training, we bring you the right pros for every project on your list. </h4>
+		<h4 class="headingcolor"> Looking for security personnel in the UK? Get accesss to thousands of vetted SIA security personnel. </h4>
 		</div>
 		<div class="col-md-3"></div>
 		</div>
@@ -73,10 +73,10 @@ $setid=1;
 		{!! csrf_field() !!}
 		<div class="col-md-8 paddingoff">
 		
-		<input type="text" name="search_text" class="searchtext validate[required]" id="search_text" placeholder="What service do you need?">
+		<input type="text" name="search_text" class="searchtext validate[required]" id="search_text" placeholder="Start by entering a location">
 		
 		</div>
-		<div class="col-md-4 paddingoff"><input type="submit" name="search" class="searchbtn" value="Get Started"></div>
+		<div class="col-md-4 paddingoff"><input type="submit" name="search" class="searchbtn" value="Search For Security"></div>
 		
 		
 		</div>
