@@ -43,18 +43,6 @@
 	 </div>
 	<div class="container">
 	
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
     <div class="row profile">
 		<div class="col-md-3 ">
 			<div class="profile-sidebar">
@@ -268,33 +256,13 @@
                         </div>
                     </form>
                 </div>
-				
-				
-			   
-			   
-			   
-			   
-			   
             </div>
 		</div>
 	</div>
-
-
 	 
 	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 <div class="height30"></div>
-	 <div class="row">
-	
-	
-	
+	<div class="height30"></div>
+	<div class="row">
 	
 	
 	</div>

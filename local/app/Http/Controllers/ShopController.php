@@ -40,7 +40,10 @@ class ShopController extends Controller
 		
 		
 		
-		
+	
+    	$userid = Auth::user()->id;
+		$editprofile = DB::select('select * from users where id = ?',[$userid]);
+		$data = array('editprofile' => $editprofile);
 
       $time = array("12:00 AM"=>"0", "01:00 AM"=>"1", "02:00 AM"=>"2", "03:00 AM"=>"3", "04:00 AM"=>"4", "05:00 AM"=>"5", "06:00 AM"=>"6", "07:00 AM"=>"7", "08:00 AM"=>"8",
 	 "09:00 AM"=>"9", "10:00 AM"=>"10", "11:00 AM"=>"11", "12:00 PM"=>"12", "01:00 PM"=>"13", "02:00 PM"=>"14", "03:00 PM"=>"15", "04:00 PM"=>"16", "05:00 PM"=>"17", "06:00 PM"=>"18",
@@ -118,7 +121,7 @@ class ShopController extends Controller
 		
 		$data = array('time' => $time, 'days' =>  $days, 'daytxt' => $daytxt, 'shopcount' => $shopcount, 'shop' => $shop, 'stime' => $stime,
 		'etime' => $etime, 'lev' => $lev, 'sel' => $sel, 'viewservice' => $viewservice, 'setting' => $setting, 'rating_count' => $rating_count, 'rating' => $rating);
-            return view('shop')->with($data);
+            return view('shop', compact('data', 'userid', 'editprofile', 'data'))->with($data);
     }
 	
 	
