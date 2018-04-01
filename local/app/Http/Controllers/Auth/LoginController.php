@@ -34,7 +34,7 @@ if(auth()->check() && auth()->user()->id == 1){
         }
 		else
 		{
-			return redirect('/dashboard');
+			return redirect('/account');
 		}
 
         

@@ -34,7 +34,7 @@ Route::get('/logout', 'DashboardController@sangvish_logout');
 Route::get('/delete-account', 'DashboardController@sangvish_deleteaccount');
 Route::post('/dashboard', ['as'=>'dashboard','uses'=>'DashboardController@sangvish_edituserdata']);
 
-Route::get('/shop', 'ShopController@sangvish_viewshop');
+Route::get('/account', 'ShopController@sangvish_viewshop');
 
 Route::get('/addshop', 'ShopController@sangvish_addshop');
 
