@@ -22,7 +22,7 @@ $setid=1;
           <a class="" href="<?php echo $url;?>">
 		   <?php if(!empty($setts[0]->site_logo)){?>
 		  
-		  <img src="<?php echo $url.'/local/images/settings/'.$setts[0]->site_logo;?>" border="0" alt="<?php echo $setts[0]->site_name;?>" />
+		  <img src="<?php echo $url.'/images/settings/'.$setts[0]->site_logo;?>" border="0" alt="<?php echo $setts[0]->site_name;?>" />
 		   <?php } else {?>
 		   <?php echo $setts[0]->site_name;?>
 		   <?php } ?>
@@ -44,7 +44,7 @@ $setid=1;
 
 			<!-- Added by Ninja 20180331 start here-->	
 						<li><a href="<?php echo $url;?>/">Home</a></li>				
-						<li><a href="<?php echo $url;?>/shop">My Account</a></li>						
+						<li><a href="{{ url('account') }}">My Account</a></li>						
 						<li><a href="<?php echo $url;?>/search">Security Personnel</a></li>						
 						<li><a href="<?php echo $url;?>/#">Find Jobs</a></li>						
 						<li><a href="<?php echo $url;?>/how-it-works">How It Works</a></li>			
@@ -62,7 +62,8 @@ $setid=1;
 						<?php } ?>
 								
 						<?php if(Auth::user()->admin==0) {?>
-						<li><a href="<?php echo $url;?>/dashboard">My Dashboard</a></li>
+						<!-- <li><a href="<?php echo $url;?>/dashboard">My Dashboard</a></li> -->
+						<li><a href="<?php echo $url;?>/dashboard">Freelancer Profile</a></li>
 						<li><a href="<?php echo $url;?>/my_bookings">My Bookings</a></li>
 						<?php } ?>			
 								
@@ -74,7 +75,7 @@ $setid=1;
 		 ->where('seller_email', '=',$sellmail)
 		 ->count();
 					?>
-				<li><a href="<?php echo $url;?>/dashboard">My Dashboard</a></li>
+				<li><a href="<?php echo $url;?>/dashboard">Freelancer Profile</a></li>
 				<li><a href="<?php echo $url;?>/my_bookings">My Bookings</a></li>
 				<!--
 				<li><a href="<?php echo $url;?>/myorder">My Order</a></li>

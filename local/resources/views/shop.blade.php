@@ -41,7 +41,7 @@
 	<div class="video">
 	<div class="clearfix"></div>
 	<div class="headerbg">
-	 <div class="col-md-12" align="center"><h1>Shop</h1></div>
+	 <div class="col-md-12" align="center"><h1>Account</h1></div>
 	 </div>
 	<div class="">
 	 
@@ -95,8 +95,8 @@
 				
 				
     <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="#inbox" data-toggle="tab"><span class="lnr lnr-user blok"></span> Profile</a></li>
-      <li><a href="#sent" data-toggle="tab"><span class="lnr lnr-cog blok"></span> Services</a></li>
+      <li class="active"><a href="#inbox" data-toggle="tab"><span class="lnr lnr-user blok"></span> Freelancer Profile</a></li>
+      <li><a href="#sent" data-toggle="tab"><span class="lnr lnr-cog blok"></span> Employer Profile</a></li>
       <li><a href="#assignment" data-toggle="tab"><span class="lnr lnr-star blok"></span> Reviews</a></li>
       
     </ul>

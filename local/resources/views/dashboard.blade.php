@@ -39,7 +39,7 @@
 	<div class="video">
 	<div class="clearfix"></div>
 	<div class="headerbg">
-	 <div class="col-md-12" align="center"><h1>Dashboard</h1></div>
+	 <div class="col-md-12" align="center"><h1>Freelancer Profile</h1></div>
 	 </div>
 	<div class="container">
 	
@@ -117,6 +117,13 @@
 						</li>
 						<?php } ?>
 						
+						<li>
+							<a href="{{ url('account') }}">
+							<i class="fa fa-user" aria-hidden="true"></i>
+
+							My Account </a>
+						</li>
+
 						<li>
 							<a href="<?php echo $url;?>/logout">
 							<i class="fa fa-sign-out" aria-hidden="true"></i>
