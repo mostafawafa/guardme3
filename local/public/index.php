@@ -25,7 +25,8 @@ last updated: 23-08-2017 */
 |
 */
 
-require __DIR__.'/local/bootstrap/autoload.php';
+// require __DIR__.'/bootstrap/autoload.php';
+require __DIR__.'/../bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ require __DIR__.'/local/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/local/bootstrap/app.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

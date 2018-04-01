@@ -22,7 +22,7 @@ $setid=1;
           <a class="" href="<?php echo $url;?>">
 		   <?php if(!empty($setts[0]->site_logo)){?>
 		  
-		  <img src="<?php echo $url.'/local/images/settings/'.$setts[0]->site_logo;?>" border="0" alt="<?php echo $setts[0]->site_name;?>" />
+		  <img src="<?php echo $url.'/images/settings/'.$setts[0]->site_logo;?>" border="0" alt="<?php echo $setts[0]->site_name;?>" />
 		   <?php } else {?>
 		   <?php echo $setts[0]->site_name;?>
 		   <?php } ?>
