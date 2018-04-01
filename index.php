@@ -25,7 +25,6 @@ last updated: 23-08-2017 */
 |
 */
 
-// require __DIR__.'/bootstrap/autoload.php';
 require __DIR__.'/local/bootstrap/autoload.php';
 
 /*

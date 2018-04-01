@@ -343,13 +343,22 @@
 	
 	</div>
 	</div>
-
-	   <div class="col-md-12">
-		<!-- <div class="col-md-6">
-			<h3>Description</h3>
-			<p><?php echo $shop[0]->description;?></p><br/>
-		</div>	 -->
-		<!-- <div class="col-md-6 contact_address">
+      </div>
+     
+	 
+	 
+	 
+	 
+       
+      <div class="tab-pane" id="sent">
+           <div class="clearfix"></div>
+		   
+		 <div class="col-md-12">
+		    <div class="col-md-6">
+			    <h3>Description</h3>
+		    	    <p><?php echo $shop[0]->description;?></p><br/>
+		    </div>	
+		 <div class="col-md-6 contact_address">
 			<h3>Contact Address</h3>
 				<p><span class="lnr lnr-map-marker"></span> <?php echo  ' '.$shop[0]->address;?><br>
 				<?php echo $shop[0]->city;?> - <?php echo $shop[0]->pin_code;?><br>
@@ -376,40 +385,8 @@
 				<h3>Shop Status </h3>
 				<p><?php echo $shop[0]->status;?></p>
 			</div>
-			</div> -->
+			</div>
 		</div>
-	   
-	   
-      </div>
-     
-	 
-	 
-	 
-	 
-       
-      <div class="tab-pane" id="sent">
-           <div class="clearfix"></div>
-		   
-		    <div class="col-md-12">
-			
-			<?php foreach($viewservice as $sellerservice){?>
-			
-			<div class="col-md-3">
-			<div class="services">
-				<h4><?php echo $sellerservice->subname;?></h4>
-				<h5><span class="icon_info" aria-hidden="true"></span>
-					<?php echo $sellerservice->price;?> &nbsp; <?php echo $setting[0]->site_currency;?> | <?php echo $sellerservice->time;?> hour(s)</h5>
-			</div>
-			</div>
-			<?php } ?>
-			
-			</div>
-		   
-		  
-		   
-		   
-		   
-      </div>
       
 	  
 	  
