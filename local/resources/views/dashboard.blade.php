@@ -85,6 +85,13 @@
 
 							Account Settings </a>
 						</li>
+                                                <?php
+                                                    $sellmail = Auth::user()->email;
+                                                    $shcount = DB::table('shop')
+                                                            ->where('seller_email', '=',$sellmail)
+                                                            ->count();
+                                                ?>
+                                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>"><i class="fa fa-gear" aria-hidden="true"></i>Dashboard</a></li>
 						<?php if($sta!=1){?>
 						<li>
 						<?php if(config('global.demosite')=="yes"){?>

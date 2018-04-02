@@ -41,10 +41,15 @@ $setid=1;
             <li><a href="<?php echo $url;?>/login">Login</a></li>
             <li><a href="<?php echo $url;?>/register">Sign Up</a></li>						
             <?php } else { ?>
-
+                                                <?php
+                                                    $sellmail = Auth::user()->email;
+                                                    $shcount = DB::table('shop')
+                                                            ->where('seller_email', '=',$sellmail)
+                                                            ->count();
+                                                ?>
 			<!-- Added by Ninja 20180331 start here-->	
-						<li><a href="<?php echo $url;?>/">Home</a></li>				
-						<li><a href="{{ url('account') }}">My Account</a></li>						
+						<li><a href="<?php echo $url;?>/">Home</a></li>
+                                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>">Dashboard</a></li>						
 						<li><a href="<?php echo $url;?>/search">Security Personnel</a></li>						
 						<li><a href="<?php echo $url;?>/#">Find Jobs</a></li>						
 						<li><a href="<?php echo $url;?>/how-it-works">How It Works</a></li>			
@@ -75,14 +80,14 @@ $setid=1;
 		 ->where('seller_email', '=',$sellmail)
 		 ->count();
 					?>
+                                <!--
 				<li><a href="<?php echo $url;?>/dashboard">Freelancer Profile</a></li>
 				<li><a href="<?php echo $url;?>/my_bookings">My Bookings</a></li>
-                                <!-- 
-                                /services to menu changed the URL to /post-job
-                                /addshop url changed to "Employer Profile"
-                                -->
-                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>">Employer Profile</a></li>
+                                 
+                                /services to menu changed the URL to /post-job                                
+                                                               
                                 <li <?php if(empty($shcount)){?>class="disabled"<?php } ?>><a href="<?php echo $url;?>/post-job" <?php if(empty($shcount)){?>class="disabled"<?php } ?>>Post job</a></li>
+                                --> 
 				<!--
 				<li><a href="<?php echo $url;?>/myorder">My Order</a></li>
 				<li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addshop<?php } else { ?><?php echo $url;?>/shop<?php } ?>">My Shop</a></li>
