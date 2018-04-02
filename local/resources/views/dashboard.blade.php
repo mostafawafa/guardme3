@@ -104,13 +104,6 @@
 						<?php } ?>
 						</li>
 						<?php } ?>
-						
-						<li>
-							<a href="{{ url('account') }}">
-							<i class="fa fa-user" aria-hidden="true"></i>
-
-							My Account </a>
-						</li>
 
 						<li>
 							<a href="<?php echo $url;?>/logout">

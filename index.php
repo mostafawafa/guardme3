@@ -25,10 +25,6 @@ last updated: 23-08-2017 */
 |
 */
 
-<<<<<<< HEAD:index.php
-=======
-// require __DIR__.'/bootstrap/autoload.php';
->>>>>>> b2a9f153c56928bb7138a022c81fd60c1fc88d1e:index.php
 require __DIR__.'/local/bootstrap/autoload.php';
 
 /*
