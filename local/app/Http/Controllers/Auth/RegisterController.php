@@ -1,7 +1,8 @@
 <?php
 
 namespace Responsive\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\DB;
+use Auth;
 use Responsive\User;
 use Responsive\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/account';
 
     /**
      * Create a new controller instance.
@@ -75,5 +76,18 @@ class RegisterController extends Controller
 			'photo' => '',
 			'admin' => $data['usertype'],
         ]);
+    }
+    
+    protected function redirectTo()
+    {
+        $sellmail = Auth::user()->email;
+        $shcount = DB::table('shop')
+                ->where('seller_email', '=',$sellmail)
+                ->count();   
+        if(empty($shcount)){
+            return '/addcompany';
+        }else{
+            return '/account';
+        }        
     }
 }
