@@ -138,9 +138,6 @@
 						<?php echo $editprofile[0]->name;?> 
 					</div>
 					<?php $sta=$editprofile[0]->admin; if($sta==1){ $viewst="Admin"; } else if($sta==2) { $viewst="Seller"; } else if($sta==0) { $viewst="Customer"; } ?>
-					<div class="profile-usertitle-job">
-						User Type : <?php echo $viewst;?>
-					</div>
 				</div>
 				
 				<div class="profile-userbuttons">

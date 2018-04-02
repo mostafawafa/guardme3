@@ -64,7 +64,7 @@ class ServicesController extends Controller
 	   
       
 	 
-	  return redirect('services');
+	  return redirect('post-job');
       
    }
    

@@ -145,7 +145,7 @@
 	 <?php if(config('global.demosite')=="yes"){?><span class="disabletxt">( <?php echo config('global.demotxt');?> ) </span><button type="button" class="btn btn-primary radiusoff btndisable">Add Services</button> 
 								<?php } else { ?>
 	
-	 <a href="<?php echo $url;?>/services" class="btn btn-primary radiusoff">Add Services</a>
+	 <a href="<?php echo $url;?>/post-job" class="btn btn-primary radiusoff">Add Services</a>
 								<?php } ?>
 	 
 	 </div>
@@ -176,7 +176,7 @@
 	  <?php if(config('global.demosite')=="yes"){?>
 	  <a href="#" class="btndisable"><img src="<?php echo $url.'/local/images/edit.png';?>" alt="Edit" border="0"></a> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span>
 	  <?php } else { ?>
-	  <a href="<?php echo $url;?>/services/<?php echo $newserve->id;?>"><img src="<?php echo $url.'/local/images/edit.png';?>" alt="Edit" border="0"></a>
+	  <a href="<?php echo $url;?>/post-job/<?php echo $newserve->id;?>"><img src="<?php echo $url.'/local/images/edit.png';?>" alt="Edit" border="0"></a>
 	  <?php } ?>
 	  
 	  
@@ -185,7 +185,7 @@
 	   <?php if(config('global.demosite')=="yes"){?>
 	  <a href="#" class="btndisable"><img src="<?php echo $url.'/local/images/delete.png';?>" alt="Delete" border="0"></a> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span>
 	  <?php } else { ?>
-	  <a href="<?php echo $url;?>/services/<?php echo $newserve->id;?>/delete" onclick="return confirm('Are you sure you want to delete this?')">
+	  <a href="<?php echo $url;?>/post-job/<?php echo $newserve->id;?>/delete" onclick="return confirm('Are you sure you want to delete this?')">
 	  <img src="<?php echo $url.'/local/images/delete.png';?>" alt="Delete" border="0"></a></td>
 	  <?php } ?>
     </tr>
