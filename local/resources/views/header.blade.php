@@ -36,7 +36,7 @@ $setid=1;
 						<li><a href="<?php echo $url;?>/">Home</a></li>									
 						<li><a href="<?php echo $url;?>/search">Security Personnel</a></li>						
 						<li><a href="<?php echo $url;?>/#">Find Jobs</a></li>						
-						<li><a href="<?php echo $url;?>/how-it-works">How It Works</a></li>																		
+						<li><a href="<?php echo $url;?>/how-it-works">How It Works</a></li>	
 			<!-- Added by Ninja 20180331 end here-->				
             <li><a href="<?php echo $url;?>/login">Login</a></li>
             <li><a href="<?php echo $url;?>/register">Sign Up</a></li>						
@@ -53,6 +53,16 @@ $setid=1;
 						<li><a href="<?php echo $url;?>/search">Security Personnel</a></li>						
 						<li><a href="<?php echo $url;?>/#">Find Jobs</a></li>						
 						<li><a href="<?php echo $url;?>/how-it-works">How It Works</a></li>			
+						<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Support<b class="caret"></b></a>
+
+							<ul class="dropdown-menu">
+
+								<li><a href="<?php echo $url;?>/support/tickets">Tickets</a></li>
+								
+							</ul>
+						</li>
+
 						<li><a style="border-left: 1px solid #b3b0b0;" href="<?php echo $url;?>/#"><i class="fa fa-heart-o"></i></a></li>															
 						<li><a href="<?php echo $url;?>/#"><i class="fa fa-envelope-o"></i></a></li>															
 						<li><a href="<?php echo $url;?>/#"><i class="fa fa-bell-o"></i></a></li>																											

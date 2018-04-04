@@ -260,5 +260,21 @@ Route::group(['middleware' => 'web'], function (){
 });
 
 
+/**
+ * Start Tickets Module
+ */
+
+
+Route::group(['prefix' => '/support/tickets', 'middleware' => 'auth'], function () {
+    Route::get('/', 'TicketController@index')->name('ticket.index');
+    Route::get('/create', 'TicketController@create')->name('ticket.create');
+    Route::post('/', 'TicketController@store')->name('ticket.store');
+    Route::get('/{id}', 'TicketController@show')->where('id', '[0-9]+')
+        ->name('ticket.show');
+    Route::put('/{id}', 'TicketController@update')->where('id', '[0-9]+')
+        ->name('ticket.update');
+    Route::post('/{id}/messages', 'MessageController@store')->where('id', '[0-9]+')
+        ->name('tickets.messages.store');
+});
 
 

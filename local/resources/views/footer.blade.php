@@ -185,7 +185,7 @@ $setid=1;
 
 
 
-	</script>
+</script>
 	
 	
 	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
@@ -198,5 +198,6 @@ $('#langOpt').multiselect({
     placeholder: 'Select Services'
 });
 </script>
+
 	
 	<?php /* ?><script src="{{ asset('js/app.js') }}"></script><?php */?>
