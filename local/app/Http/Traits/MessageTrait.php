@@ -13,7 +13,7 @@ use Storage;
 
 trait MessageTrait
 {
-    private $maxSizeUploadFile = 10000;
+    private $maxSizeUploadFile = 20000;
     private $maxCountUploadFiles = 10;
     private $uploadFilePath = 'files/ticket_attachments';
     private function messageStore($request, $ticketId)
