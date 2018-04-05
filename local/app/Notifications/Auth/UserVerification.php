@@ -48,7 +48,7 @@ class UserVerification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url('/user/verify/'.$this->token);
+        $url = url('/user/verification/'.$this->token);
 
         return (new MailMessage)
             ->subject('Please Verify Your Email Address')

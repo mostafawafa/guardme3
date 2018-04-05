@@ -65,10 +65,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-		
+
         return User::create([
             'name' => $data['name'],
-			
+
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
 			'gender' => $data['gender'],
@@ -77,17 +77,17 @@ class RegisterController extends Controller
 			'admin' => $data['usertype'],
         ]);
     }
-    
+
     protected function redirectTo()
     {
         $sellmail = Auth::user()->email;
         $shcount = DB::table('shop')
                 ->where('seller_email', '=',$sellmail)
-                ->count();   
+                ->count();
         if(empty($shcount)){
             return '/addcompany';
         }else{
             return '/account';
-        }        
+        }
     }
 }

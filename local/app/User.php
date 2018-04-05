@@ -134,8 +134,6 @@ class User extends Authenticatable
      */
     public function setAsUnverified()
     {
-        $this->checkUnverifiedStatus();
-
         $this->update([
             'verified' => false
         ]);
