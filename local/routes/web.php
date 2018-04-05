@@ -36,13 +36,13 @@ Route::post('/dashboard', ['as'=>'dashboard','uses'=>'DashboardController@sangvi
 
 Route::get('/account', 'ShopController@sangvish_viewshop');
 
-Route::get('/addshop', 'ShopController@sangvish_addshop');
+Route::get('/addcompany', 'ShopController@sangvish_addshop');
 
 Route::get('/editshop/{id}', 'ShopController@sangvish_editshop');
 
 Route::post('/editshop', ['as'=>'editshop','uses'=>'ShopController@sangvish_savedata']);
 
-Route::post('/addshop', ['as'=>'addshop','uses'=>'ShopController@sangvish_savedata']);
+Route::post('/addcompany', ['as'=>'addshop','uses'=>'ShopController@sangvish_savedata']);
 
 
 
@@ -125,11 +125,11 @@ Route::post('/api/user/verification', 'Api\Auth\VerificationController@postVerif
 	Route::post('/contact', ['as'=>'contact','uses'=>'PageController@sangvish_mailsend']);
 
 
-Route::get('/services','ServicesController@sangvish_index');
-Route::get('/services/{id}','ServicesController@sangvish_editdata');
+Route::get('/post-job','ServicesController@sangvish_index');
+Route::get('/post-job/{id}','ServicesController@sangvish_editdata');
 
-Route::post('/services', ['as'=>'services','uses'=>'ServicesController@sangvish_savedata']);
-Route::get('/services/{did}/delete','ServicesController@sangvish_destroy');
+Route::post('/post-job', ['as'=>'services','uses'=>'ServicesController@sangvish_savedata']);
+Route::get('/post-job/{did}/delete','ServicesController@sangvish_destroy');
 
 
 Route::get('/gallery','GalleryController@sangvish_index');
@@ -272,5 +272,21 @@ Route::group(['middleware' => 'web'], function (){
 });
 
 
+/**
+ * Start Tickets Module
+ */
+
+
+Route::group(['prefix' => '/support/tickets', 'middleware' => 'auth'], function () {
+    Route::get('/', 'TicketController@index')->name('ticket.index');
+    Route::get('/create', 'TicketController@create')->name('ticket.create');
+    Route::post('/', 'TicketController@store')->name('ticket.store');
+    Route::get('/{id}', 'TicketController@show')->where('id', '[0-9]+')
+        ->name('ticket.show');
+    Route::put('/{id}', 'TicketController@update')->where('id', '[0-9]+')
+        ->name('ticket.update');
+    Route::post('/{id}/messages', 'MessageController@store')->where('id', '[0-9]+')
+        ->name('tickets.messages.store');
+});
 
 

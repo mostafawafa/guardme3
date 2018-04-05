@@ -138,9 +138,6 @@
 						<?php echo $editprofile[0]->name;?> 
 					</div>
 					<?php $sta=$editprofile[0]->admin; if($sta==1){ $viewst="Admin"; } else if($sta==2) { $viewst="Seller"; } else if($sta==0) { $viewst="Customer"; } ?>
-					<div class="profile-usertitle-job">
-						User Type : <?php echo $viewst;?>
-					</div>
 				</div>
 				
 				<div class="profile-userbuttons">
@@ -162,6 +159,14 @@
 
 							Account Settings </a>
 						</li>
+                                                <?php
+                                                    $sellmail = Auth::user()->email;
+                                                    $shcount = DB::table('shop')
+                                                            ->where('seller_email', '=',$sellmail)
+                                                            ->count();
+                                                ?>
+
+                                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>"><i class="fa fa-gear" aria-hidden="true"></i>Dashboard</a></li>
 						<?php if($sta!=1){?>
 						<li>
 						<?php if(config('global.demosite')=="yes"){?>
@@ -178,14 +183,14 @@
 						<?php } ?>
 						</li>
 						<?php } ?>
-						
+						<!--
 						<li>
 							<a href="{{ url('account') }}">
 							<i class="fa fa-user" aria-hidden="true"></i>
 
 							My Account </a>
 						</li>
-
+                                                -->
 						<li>
 							<a href="<?php echo $url;?>/logout">
 							<i class="fa fa-sign-out" aria-hidden="true"></i>

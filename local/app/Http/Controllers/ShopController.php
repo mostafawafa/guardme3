@@ -605,7 +605,7 @@ class ShopController extends Controller
 			
 			
         
-		return redirect('shop');
+		return redirect('account');
 		
 		
 		
