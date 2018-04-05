@@ -44,7 +44,7 @@
 	<div class="container">
 		<div style="margin-top: 20px;"></div>
 
-	@if( !session('verification_message') && !\Auth::user()->verified)
+	@if(!session('verification_message') && !\Auth::user()->verified)
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="alert alert-warning">

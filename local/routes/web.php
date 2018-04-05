@@ -96,8 +96,10 @@ Route::get('/user/resend_verification', 'Auth\VerificationController@getResendVe
 // Use with 'uid' get parameter (eg.: /api/user/verification/status?uid=12)
 Route::get('/api/user/verification/status', 'Api\Auth\VerificationController@getVerificationStatus')
 	 ->name('api.user.verification_status');
-Route::post('/api/user/verification', 'Api\Auth\VerificationController@postVerification')
-	 ->name('api.user.verify_email');
+Route::post('/api/user/verified', 'Api\Auth\VerificationController@postVerified')
+	 ->name('api.user.verified');
+Route::post('/api/user/unverified', 'Api\Auth\VerificationController@postUnverified')
+	 ->name('api.user.unverified');
 
 	Route::get('/about','PageController@sangvish_about');
 
