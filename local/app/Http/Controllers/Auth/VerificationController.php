@@ -5,6 +5,7 @@ namespace Responsive\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Responsive\Http\Controllers\Controller;
 use Responsive\User;
+use Responsive\Notifications\Auth\UserVerification as UserVerificationNotification;
 
 class VerificationController extends Controller
 {
