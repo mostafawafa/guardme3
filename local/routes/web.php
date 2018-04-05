@@ -83,35 +83,47 @@ Route::get('/wallet', 'WalletController@sangvish_showpage');
 
 Route::post('/wallet', ['as'=>'wallet','uses'=>'WalletController@sangvish_savedata']);
 
-
+/* Authentication routes */
 Auth::routes();
 
-	
+/* User Verification */
+Route::get('/user/verification/{token}', 'Auth\VerificationController@getVerification')
+	 ->name('user.verify_email');
+Route::get('/user/resend_verification', 'Auth\VerificationController@getResendVerification')
+	 ->name('user.resend_verification');
+
+/* API of User Verification */
+// Use with 'uid' get parameter (eg.: /api/user/verification/status?uid=12)
+Route::get('/api/user/verification/status', 'Api\Auth\VerificationController@getVerificationStatus')
+	 ->name('api.user.verification_status');
+Route::post('/api/user/verification', 'Api\Auth\VerificationController@postVerification')
+	 ->name('api.user.verify_email');
+
 	Route::get('/about','PageController@sangvish_about');
-	
+
 	Route::get('/404','PageController@sangvish_404');
-	
-	
+
+
 	Route::get('/how-it-works','PageController@sangvish_howit');
-	
+
 	Route::get('/safety','PageController@sangvish_safety');
-	
+
 	Route::get('/service-guide','PageController@sangvish_guide');
-	
+
 	Route::get('/how-to-pages','PageController@sangvish_topages');
-	
-	
+
+
 	Route::get('/success-stories','PageController@sangvish_stories');
-	
-	
+
+
 	Route::get('/terms-conditions','PageController@sangvish_terms');
-	
+
 	Route::get('/privacy-policy','PageController@sangvish_privacy');
-	
+
 	Route::get('/contact','PageController@sangvish_contact');
-	
+
 	Route::post('/contact', ['as'=>'contact','uses'=>'PageController@sangvish_mailsend']);
-	
+
 
 Route::get('/services','ServicesController@sangvish_index');
 Route::get('/services/{id}','ServicesController@sangvish_editdata');
@@ -147,18 +159,18 @@ Route::group(['middleware' => 'admin'], function() {
 
     Route::get('/admin','Admin\DashboardController@index');
     Route::get('/admin/index','Admin\DashboardController@index');
-	
+
 	/* user */
 	Route::get('/admin/users','Admin\UsersController@index');
 	Route::get('/admin/adduser','Admin\AdduserController@formview');
 	Route::post('/admin/adduser', ['as'=>'admin.adduser','uses'=>'Admin\AdduserController@adduserdata']);
-    
+
 	Route::get('/admin/users/{id}','Admin\UsersController@destroy');
 	Route::get('/admin/edituser/{id}','Admin\EdituserController@showform');
 	Route::post('/admin/edituser', ['as'=>'admin.edituser','uses'=>'Admin\EdituserController@edituserdata']);
 	/* end user */
-	
-	
+
+
 	/* services */
 	Route::get('/admin/services','Admin\ServicesController@index');
 	Route::get('/admin/addservice','Admin\AddserviceController@formview');
@@ -166,96 +178,96 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/admin/services/{id}','Admin\ServicesController@destroy');
 	Route::get('/admin/editservice/{id}','Admin\EditserviceController@showform');
 	Route::post('/admin/editservice', ['as'=>'admin.editservice','uses'=>'Admin\EditserviceController@editservicedata']);
-	
+
 	/* end services */
-	
-	
+
+
 	/* sub services */
-	
+
 	Route::get('/admin/subservices','Admin\SubservicesController@index');
 	Route::get('/admin/addsubservice','Admin\AddsubserviceController@formview');
 	Route::get('/admin/addsubservice','Admin\AddsubserviceController@getservice');
 	Route::post('/admin/addsubservice', ['as'=>'admin.addsubservice','uses'=>'Admin\AddsubserviceController@addsubservicedata']);
 	Route::get('/admin/subservices/{id}','Admin\SubservicesController@destroy');
-	
-	
-	
+
+
+
 	Route::get('/admin/editsubservice/{id}','Admin\EditsubserviceController@edit');
-	
+
 	Route::post('/admin/editsubservice', ['as'=>'admin.editsubservice','uses'=>'Admin\EditsubserviceController@editsubservicedata']);
 	/* end sub services */
-	
-	
-	
+
+
+
 	/* Testimonials */
-	
+
 	Route::get('/admin/testimonials','Admin\TestimonialsController@index');
 	Route::get('/admin/add-testimonial','Admin\AddtestimonialController@formview');
 	Route::post('/admin/add-testimonial', ['as'=>'admin.add-testimonial','uses'=>'Admin\AddtestimonialController@addtestimonialdata']);
 	Route::get('/admin/testimonials/{id}','Admin\TestimonialsController@destroy');
 	Route::get('/admin/edit-testimonial/{id}','Admin\EdittestimonialController@showform');
 	Route::post('/admin/edit-testimonial', ['as'=>'admin.edit-testimonial','uses'=>'Admin\EdittestimonialController@testimonialdata']);
-	
-	
+
+
 	/* end Testimonials */
-	
-	
+
+
 	/* pages */
-	
+
 	Route::get('/admin/pages','Admin\PagesController@index');
 	Route::get('/admin/edit-page/{id}','Admin\PagesController@showform');
 	Route::post('/admin/edit-page', ['as'=>'admin.edit-page','uses'=>'Admin\PagesController@pagedata']);
-	
+
 	/* end pages */
-	
-	
-	
+
+
+
 	/* start settings */
-	
-	
+
+
 	Route::get('/admin/settings','Admin\SettingsController@showform');
 	Route::post('/admin/settings', ['as'=>'admin.settings','uses'=>'Admin\SettingsController@editsettings']);
-	
+
 	/* end settings */
-	
-	
+
+
 	/* start shop */
-	
+
 	Route::get('/admin/shop','Admin\ShopController@index');
 	Route::get('/admin/edit-shop/{id}','Admin\ShopController@showform');
 	Route::post('/admin/edit-shop', ['as'=>'admin.edit-shop','uses'=>'Admin\ShopController@savedata']);
 	Route::get('/admin/shop/{id}','Admin\ShopController@destroy');
-	
-	
-	/* end shop */ 
-	
-	
-	
+
+
+	/* end shop */
+
+
+
 	/* booking history */
-	
+
 	Route::get('/admin/booking','Admin\BookingController@index');
 	Route::get('/admin/booking/{id}','Admin\BookingController@destroy');
-	
+
 	/*  end booking history */
-	
-	
+
+
 	/* withdraw */
-	
+
 	Route::get('/admin/pending_withdraw','Admin\WithdrawController@index');
 	Route::get('/admin/pending_withdraw/{id}','Admin\WithdrawController@update');
 	Route::get('/admin/completed_withdraw','Admin\WithdrawController@doneindex');
-	
+
 	/* end withdraw */
-	
-	
-   
+
+
+
 });
 
 
 Route::group(['middleware' => 'web'], function (){
-    
+
     Route::get('/dashboard', 'DashboardController@index');
-   
+
 
 });
 
