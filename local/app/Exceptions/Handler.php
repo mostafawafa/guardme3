@@ -20,6 +20,9 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        \Responsive\Exceptions\Auth\UserIsVerifiedException::class,
+        \Responsive\Exceptions\Auth\UserIsNotVerifiedException::class,
+        \Responsive\Exceptions\Auth\VerificationTokenMismatchException::class,
     ];
 
     /**
@@ -62,12 +65,12 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
-	
+
 	 public function render($request, Exception $e)
     {
         if($this->isHttpException($e))
         {
-            switch ($e->getStatusCode()) 
+            switch ($e->getStatusCode())
                 {
                 // not found
                 case 404:
@@ -89,5 +92,5 @@ class Handler extends ExceptionHandler
                 return parent::render($request, $e);
         }
     }
-	
+
 }

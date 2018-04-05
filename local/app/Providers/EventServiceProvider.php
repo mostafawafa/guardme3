@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Responsive\Events\Event' => [
-            'Responsive\Listeners\EventListener',
+        'Illuminate\Auth\Events\Registered' => [
+            'Responsive\Listeners\Auth\SendVerificationMail',
         ],
     ];
 
