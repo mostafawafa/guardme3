@@ -9,7 +9,6 @@
         "doctrine/dbal": "^2.6",
         "intervention/image": "dev-master",
         "laravel/framework": "5.4.*",
-        "laravel/passport": "~4.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.4"
     },
