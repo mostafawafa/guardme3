@@ -13,7 +13,13 @@ $setid=1;
 <div class="alert alert-warning" role="alert" style="position: fixed;top: 0px;left: 0px;width: 100%;z-index:9999;border-radius:0px;padding:5px;">
 	<div class="container">
 		<div class="pull-left" style="margin-top: 8px">
-			A confirmation email was sent to <strong>{{ \Auth::user()->email }}</strong>. Your email will not be changed until you confirm!
+			A confirmation email was sent to <strong>{{ $changedEmail = \Auth::user()->verification->new_email ?: \Auth::user()->email }}</strong>.
+
+			@if($changedEmail)
+				Your email will not be changed until you confirm!
+			@else
+				Please check your inbox and verify your email address.
+			@endif
 		</div>
 		<div class="pull-right"><a href="{!! route('user.resend_verification') !!}" class="btn btn-default">Resend confirmation</a></div>
 	</div>
@@ -121,3 +127,14 @@ $setid=1;
         </div> <!-- /.nav-collapse -->
       </div> <!-- /.container -->
     </div> <!-- /.navbar -->
+
+@if($isVerified)
+	<style type="text/css">
+		body {
+			padding-top:46px;
+		}
+		#banner > #overlays {
+			top:46px;
+		}
+	</style>
+@endif

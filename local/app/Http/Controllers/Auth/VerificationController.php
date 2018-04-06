@@ -53,7 +53,7 @@ class VerificationController extends Controller
             return redirect('/login')->withSuccess('Your email has been successfully verified. Please login to continue.');
         }
 
-        $shop = DB::table('shop')->where('seller_email', '=', \Auth::user()->email)->first();
+        $shop = \DB::table('shop')->where('seller_email', '=', \Auth::user()->email)->first();
 
         if ($shop) {
             return redirect('/account')->withSuccess('Your email has been successfully verified.');
@@ -77,16 +77,25 @@ class VerificationController extends Controller
 
             $user = User::find(\Auth::user()->id);
 
-            $this->sendVerificationNotification($user);
+            $email = ($new_email = $user->verification->new_email)
+            ? $new_email : null;
+
+            $this->sendVerificationNotification($user, $email);
         } catch (\Responsive\Exceptions\Auth\UserIsVerifiedException $e) {
             return redirect('/account')->withMessage($e->getMessage());
+        }
+
+        if ($email) {
+            $confirmation_message = 'We have already resent a verification link to '.$email.'. Your email will not be changed until you confirm!';
+        } else {
+            $confirmation_message = 'We have already resent a verification link to '.\Auth::user()->email;
         }
 
         return redirect('/user/confirmation')
              ->with([
                 'need_email_confirmation' => true,
-                'confirmation_title'      => 'Confirmation was sent!',
-                'confirmation_message'    => 'We have already resent a confirmation email to '.\Auth::user()->email
+                'confirmation_title'      => 'Email verification has been sent!',
+                'confirmation_message'    => $confirmation_message
             ]);
     }
 
@@ -95,12 +104,17 @@ class VerificationController extends Controller
      * from the given user
      *
      * @param \Responsive\User $user
+     * @param $email
      * @return void
      */
-    private function sendVerificationNotification(User $user)
+    private function sendVerificationNotification(User $user, $email = null)
     {
         $token = $user->generateToken();
 
-        $user->notify(new UserVerificationNotification($token));
+        if ($email) {
+            $user->changeEmail($email);
+        }
+
+        $user->notify(new UserVerificationNotification($token, $email));
     }
 }

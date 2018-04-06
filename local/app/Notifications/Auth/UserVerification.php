@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Responsive\Mail\ChangeEmailAddress as Mailable;
 
 class UserVerification extends Notification implements ShouldQueue
 {
@@ -19,14 +20,22 @@ class UserVerification extends Notification implements ShouldQueue
     public $token;
 
     /**
+     * The email address
+     *
+     * @var string
+     */
+    public $email;
+
+    /**
      * Create a new notification instance.
      *
      * @param  mixed $user
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $email = null)
     {
         $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -44,11 +53,18 @@ class UserVerification extends Notification implements ShouldQueue
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     * @return \Responsive\Mail\ChangeEmailAddress
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         $url = url('/user/verification/'.$this->token);
+
+        if ($this->email) {
+            return (new Mailable($url))
+                ->to($this->email)
+                ->subject('Please Verify Your New Email Address');
+        }
 
         return (new MailMessage)
             ->subject('Please Verify Your Email Address')

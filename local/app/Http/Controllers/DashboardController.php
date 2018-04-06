@@ -74,133 +74,86 @@ class DashboardController extends Controller
 
 	protected function sangvish_edituserdata(Request $request)
     {
+		$this->validate($request, [
+			'name' => 'required',
+			'email' => 'required|email'
+		]);
 
-
-
-
-		 $this->validate($request, [
-
-        		'name' => 'required',
-
-        		'email' => 'required|email'
-
-
-
-
-
-        	]);
-
-		 $data = $request->all();
-
-         $id=$data['id'];
-
+		$data = $request->all();
+        $id=$data['id'];
 		$input['email'] = Input::get('email');
-
 		$input['name'] = Input::get('name');
 
-
 		$rules = array(
-
-
-
-        'email'=>'required|email|unique:users,email,'.$id,
-		'name' => 'required|regex:/^[\w-]*$/|max:255|unique:users,name,'.$id,
-		'photo' => 'max:1024|mimes:jpg,jpeg,png'
-
-
+			'email'=>'required|email|unique:users,email,'.$id,
+			'name' => 'required|regex:/^[\w-]*$/|max:255|unique:users,name,'.$id,
+			'photo' => 'max:1024|mimes:jpg,jpeg,png'
         );
 
 
 		$messages = array(
-
             'email' => 'The :attribute field is already exists',
             'name' => 'The :attribute field must only be letters and numbers (no spaces)'
+		);
 
-        );
+		$validator = Validator::make(Input::all(), $rules, $messages);
 
-
-
-
-
-		 $validator = Validator::make(Input::all(), $rules, $messages);
-
-
-
-		if ($validator->fails())
-		{
-			 $failedRules = $validator->failed();
+		if ($validator->fails()) {
+			$failedRules = $validator->failed();
 
 			return back()->withErrors($validator);
-		}
-		else
-		{
+		} else {
+			$name=$data['name'];
+			$email=$data['email'];
+			$password=bcrypt($data['password']);
+			$phone=$data['phone'];
+			$currentphoto=$data['currentphoto'];
 
+			$image = Input::file('photo');
+			if ($image!="") {
+				$userphoto="/userphoto/";
+				$delpath = base_path('images'.$userphoto.$currentphoto);
+				File::delete($delpath);
+				$filename  = time() . '.' . $image->getClientOriginalExtension();
 
-		$name=$data['name'];
-		$email=$data['email'];
-		$password=bcrypt($data['password']);
+				$path = base_path('images'.$userphoto.$filename);
 
-
-
-		$phone=$data['phone'];
-
-
-		$currentphoto=$data['currentphoto'];
-
-
-		$image = Input::file('photo');
-        if($image!="")
-		{
-            $userphoto="/userphoto/";
-			$delpath = base_path('images'.$userphoto.$currentphoto);
-			File::delete($delpath);
-			$filename  = time() . '.' . $image->getClientOriginalExtension();
-
-            $path = base_path('images'.$userphoto.$filename);
-
-                Image::make($image->getRealPath())->resize(200, 200)->save($path);
+				Image::make($image->getRealPath())->resize(200, 200)->save($path);
 				$savefname=$filename;
-		}
-        else
-		{
-			$savefname=$currentphoto;
-		}
+			} else {
+				$savefname=$currentphoto;
+			}
 
+			if($data['password'] != "") {
+				$passtxt=$password;
+			} else {
+				$passtxt=$data['savepassword'];
+			}
 
-		if($data['password']!="")
-		{
-			$passtxt=$password;
-		}
-		else
-		{
-			$passtxt=$data['savepassword'];
-		}
+			$admin=$data['usertype'];
 
-		$admin=$data['usertype'];
+			$user = User::find(Auth::user()->id);
+			$user->name = $name;
+			$user->password = $passtxt;
+			$user->phone = $phone;
+			$user->photo = $savefname;
+			$user->admin = $admin;
 
+			// don't save email directly if the user change their email
+			// we will save it to verify_users table with new_email column
+			// user needs to confirm the verification email
+			// to change their email
+			if ($user->email != $email) {
+				$user->setAsUnverified();
 
-		$user = User::find(Auth::user()->id);
+				$token = $user->generateToken();
 
-		DB::update('update users set name="'.$name.'",email="'.$email.'",password="'.$passtxt.'",phone="'.$phone.'",photo="'.$savefname.'",admin="'.$admin.'" where id = ?', [$id]);
+				$user->changeEmail($email);
 
-		DB::update('update shop set seller_email="'.$email.'" where user_id = ?', [$id]);
+				$user->notify(new UserVerificationNotification($token, $email));
+			}
 
-		// if email has been changed
-		if ($user->email != $email) {
-			// set this user as unverified
-			$user->setAsUnverified();
-
-			// generate verification token
-			$token = $user->generateToken();
-
-			// then, send email verification with token
-			$user->notify(new UserVerificationNotification($token));
-
-			return back()->with([
-				'success' => 'Account has been updated',
-				'verification_message' => 'You have changed your email. You will shortly receive an email with verification link to verify your new email.'
-			]);
-		}
+			$user->save();
 
 			return back()->with('success', 'Account has been updated');
         }

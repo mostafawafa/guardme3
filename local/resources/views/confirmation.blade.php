@@ -16,7 +16,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div style="margin-top: 40px; margin-bottom: 40px;">
+          <div class="text-center" style="margin-top: 40px; margin-bottom: 40px;">
             {!! session('confirmation_message') !!}
           </div>
         </div>
