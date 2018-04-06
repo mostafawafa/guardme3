@@ -1,12 +1,15 @@
 <?php
 
 namespace Responsive\Http\Controllers\Auth;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Auth;
 use Responsive\User;
 use Responsive\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/account';
+    protected $redirectTo = '/user/confirmation';
 
     /**
      * Create a new controller instance.
@@ -38,6 +41,28 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $request->session()->flash('need_email_confirmation', true);
+        $request->session()->flash('confirmation_title', 'You have successfully registered!');
+        $request->session()->flash('confirmation_message', 'Thanks for registering with GuardME. We have sent you a verification email. Please check your email and click confirm to verify your email address');
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 
     /**
@@ -65,7 +90,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         return User::create([
             'name' => $data['name'],
 
@@ -76,18 +100,5 @@ class RegisterController extends Controller
 			'photo' => '',
 			'admin' => $data['usertype'],
         ]);
-    }
-
-    protected function redirectTo()
-    {
-        $sellmail = Auth::user()->email;
-        $shcount = DB::table('shop')
-                ->where('seller_email', '=',$sellmail)
-                ->count();
-        if(empty($shcount)){
-            return '/addcompany';
-        }else{
-            return '/account';
-        }
     }
 }

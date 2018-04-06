@@ -44,32 +44,6 @@
 	<div class="container">
 		<div style="margin-top: 20px;"></div>
 
-	@if(!session('verification_message') && !\Auth::user()->verified)
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="alert alert-warning">
-					@if(\Carbon\Carbon::now()->subSeconds(30)->gte(\Auth::user()->created_at))
-						We have already sent an email with verification link to verify your account. Please check and confirm via the given link. Have not received yet? <a href="{!! route('user.resend_verification') !!}" class="alert-link">Resend email verification</a>.
-					@else
-						You will shortly receive an email with verification link to verify your account. Have not received yet? <a href="{!! route('user.resend_verification') !!}" class="alert-link">Resend email verification</a>.
-					@endif
-				</div>
-			</div>
-		</div>
-	@endif
-
-	@if(session('verification_message'))
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="alert alert-warning">
-					{{ session('verification_message') }}
-				</div>
-			</div>
-		</div>
-	@endif
-
-	@include('shared.message')
-
     <div class="row profile">
 		<div class="col-md-3 ">
 			<div class="profile-sidebar">

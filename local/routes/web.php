@@ -87,6 +87,8 @@ Route::post('/wallet', ['as'=>'wallet','uses'=>'WalletController@sangvish_saveda
 Auth::routes();
 
 /* User Verification */
+Route::get('/user/confirmation', 'Auth\VerificationController@getConfirmation')
+	 ->name('user.email_confirmation');
 Route::get('/user/verification/{token}', 'Auth\VerificationController@getVerification')
 	 ->name('user.verify_email');
 Route::get('/user/resend_verification', 'Auth\VerificationController@getResendVerification')
