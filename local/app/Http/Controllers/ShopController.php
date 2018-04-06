@@ -65,8 +65,11 @@ class ShopController extends Controller
 
           $shop = DB::table('shop')
                 ->where('seller_email', '=', $sellermail)
-                ->get();
+				->get();
 
+			if ($shop->isEmpty()) {
+				return redirect('/addcompany');
+			}
 
 
 					if($shop[0]->start_time > 12)
