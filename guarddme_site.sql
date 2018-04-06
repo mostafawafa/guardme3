@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 04, 2018 at 05:56 PM
+-- Generation Time: Apr 06, 2018 at 04:49 AM
 -- Server version: 5.6.38
 -- PHP Version: 5.6.30
 
@@ -84,6 +84,47 @@ INSERT INTO `contact_vendor` (`id`, `name`, `phone_no`, `email`, `message`, `ven
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `queue`, `payload`, `attempts`, `reserved_at`, `available_at`, `created_at`) VALUES
+(1, 'default', '{\"displayName\":\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\",\"command\":\"O:48:\\\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\\\":6:{s:11:\\\"notifiables\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:15:\\\"Responsive\\\\User\\\";s:2:\\\"id\\\";a:1:{i:0;i:19;}}s:12:\\\"notification\\\";O:46:\\\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\\\":5:{s:5:\\\"token\\\";s:64:\\\"c1dc806c677cbecaeb8bc1a9df8f304365ec9210ca3596bf1e0f34e795144078\\\";s:2:\\\"id\\\";s:36:\\\"ada3d44e-d8f3-44f0-aee1-1ddd69fa29bd\\\";s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}s:8:\\\"channels\\\";a:1:{i:0;s:4:\\\"mail\\\";}s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}\"}}', 0, NULL, 1522947298, 1522947298),
+(2, 'default', '{\"displayName\":\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\",\"command\":\"O:48:\\\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\\\":6:{s:11:\\\"notifiables\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:15:\\\"Responsive\\\\User\\\";s:2:\\\"id\\\";a:1:{i:0;i:20;}}s:12:\\\"notification\\\";O:46:\\\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\\\":5:{s:5:\\\"token\\\";s:64:\\\"3ecd7efa34f0801bd2c8303524d4d389592af62cff7f1cb755902de7bf9d06ae\\\";s:2:\\\"id\\\";s:36:\\\"36a69a8e-44fb-41ff-961c-2c737fea9b8b\\\";s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}s:8:\\\"channels\\\";a:1:{i:0;s:4:\\\"mail\\\";}s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}\"}}', 0, NULL, 1522958610, 1522958610),
+(3, 'default', '{\"displayName\":\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\",\"command\":\"O:48:\\\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\\\":6:{s:11:\\\"notifiables\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:15:\\\"Responsive\\\\User\\\";s:2:\\\"id\\\";a:1:{i:0;i:21;}}s:12:\\\"notification\\\";O:46:\\\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\\\":5:{s:5:\\\"token\\\";s:64:\\\"defba97513171113d10dce80a15c7ed79bd53117e16e8d845094b01791a00767\\\";s:2:\\\"id\\\";s:36:\\\"c0b7741a-8f60-4818-80e4-4d55f1a336d9\\\";s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}s:8:\\\"channels\\\";a:1:{i:0;s:4:\\\"mail\\\";}s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}\"}}', 0, NULL, 1522989591, 1522989591),
+(4, 'default', '{\"displayName\":\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\",\"command\":\"O:48:\\\"Illuminate\\\\Notifications\\\\SendQueuedNotifications\\\":6:{s:11:\\\"notifiables\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:15:\\\"Responsive\\\\User\\\";s:2:\\\"id\\\";a:1:{i:0;i:22;}}s:12:\\\"notification\\\";O:46:\\\"Responsive\\\\Notifications\\\\Auth\\\\UserVerification\\\":5:{s:5:\\\"token\\\";s:64:\\\"52e4fd292e5ea0a2d238c784f19a68fc1bc72428d6fc926570d0807eb3587b14\\\";s:2:\\\"id\\\";s:36:\\\"9d2be367-12a3-4049-b4f9-137e9eef3f68\\\";s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}s:8:\\\"channels\\\";a:1:{i:0;s:4:\\\"mail\\\";}s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;}\"}}', 0, NULL, 1522989662, 1522989662);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -102,7 +143,109 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2018_04_02_144842_create_tickets_table', 2),
 (4, '2018_04_02_144856_create_ticket_file_messages_table', 2),
-(5, '2018_04_02_144902_create_ticket_messages_table', 2);
+(5, '2018_04_02_144902_create_ticket_messages_table', 2),
+(6, '2018_04_03_232258_create_verify_users_table', 3),
+(7, '2018_04_03_235926_modify_users_table', 3),
+(8, '2018_04_04_065258_create_jobs_table', 3),
+(9, '2018_04_04_070705_create_failed_jobs_table', 3),
+(10, '2016_06_01_000001_create_oauth_auth_codes_table', 4),
+(11, '2016_06_01_000002_create_oauth_access_tokens_table', 4),
+(12, '2016_06_01_000003_create_oauth_refresh_tokens_table', 4),
+(13, '2016_06_01_000004_create_oauth_clients_table', 4),
+(14, '2016_06_01_000005_create_oauth_personal_access_clients_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `client_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_clients`
+--
+
+INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Guarddme Personal Access Client', 'Bxhbr0ydejS50YgJRIRMKHsklqmZxx3N1BQDwdZG', 'http://localhost', 1, 0, 0, '2018-04-06 04:33:33', '2018-04-06 04:33:33'),
+(2, NULL, 'Guarddme Password Grant Client', '0zYyEkwaLLX5aTbMGDxfkWB2ozYZ0x2bZVFYSZUQ', 'http://localhost', 0, 1, 0, '2018-04-06 04:33:33', '2018-04-06 04:33:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_personal_access_clients`
+--
+
+INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2018-04-06 04:33:33', '2018-04-06 04:33:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -176,7 +319,6 @@ INSERT INTO `rating` (`rid`, `rating`, `email`, `rshop_id`, `comment`) VALUES
 (5, '3', 'customer@customer.com', 25, 'Well'),
 (6, '3', 'customer@customer.com', 26, 'Good mobile shop'),
 (7, '4', 'customer@customer.com', 27, 'Fine'),
-(8, '5', 'newuser@gmail.com', 28, 'Very Good'),
 (10, '3', 'seller@seller.com', 21, 'sample'),
 (17, '5', 'testinguse@gmail.com', 22, 'rwar dddd'),
 (18, '3', 'testinguse@gmail.com', 25, 'very nice service good...');
@@ -380,7 +522,7 @@ CREATE TABLE `shop` (
 
 INSERT INTO `shop` (`id`, `shop_name`, `address`, `city`, `pin_code`, `country`, `state`, `shop_phone_no`, `description`, `shop_date`, `start_time`, `end_time`, `cover_photo`, `profile_photo`, `seller_email`, `user_id`, `featured`, `status`, `admin_email_status`, `booking_opening_days`, `booking_per_hour`) VALUES
 (21, 'Wine Shop', '42, Featherstone Street LONDON EC1Y 8SY UNITED KINGDOM', 'london', '655220', 'London', 'London', '987564220', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,2,6', '11', '11', '1501759203.jpeg', '1496146095.jpg', 'wpchecking@gmail.com', 3, 'no', 'approved', '0', '5', '3'),
-(22, 'Dress Shop', '05-33 Singapore Post Centre Singapore 408600', 'Tony Tan', '408600', 'Singapore', 'Singapore', '996565', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,3,6', '3', '13', '1501759346.jpeg', '1496052063.jpg', 'seller@seller.com', 4, 'no', 'approved', '0', '5', '2'),
+(22, 'Dress Shop', '05-33 Singapore Post Centre Singapore 408600', 'Tony Tan', '408600', 'Singapore', 'Singapore', '996565', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,3,6', '3', '13', '1501759346.jpeg', '1496052063.jpg', 'olaleyeife@yahoo.co.uk', 4, 'no', 'approved', '0', '5', '2'),
 (23, 'Shopping Mall', '65,Main Road,Cross Street', 'EC2N', '55364', 'United Kingdom', 'Lon', '800255104', 'This is shopping mall', '1,2,3,4,5', '5', '22', '1501759508.jpeg', '1496129839.jpg', 'sample2@gmail.com', 5, 'no', 'approved', '0', '7', '2'),
 (24, 'Book Shop', 'No. 9 Sector 16, Panchkula Haryana.', 'Hisar', '134003', 'India', 'Haryana', '666565', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,2,3,5,6', '10', '21', '1501759634.jpeg', '1497270711.jpg', 'demo@demo.com', 12, 'no', 'approved', '0', '4', '2'),
 (25, 'Cycle Shop', '18, 29th Street, Thillai Ganga Nagar, Nanganallur, Chennai 600061', 'chennai', '600061', 'India', 'Tamilnadu', '3243232', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,5,6', '4', '18', '1501757735.jpg', '1497271665.jpeg', 'example@example.com', 13, 'no', 'approved', '0', '4', '3'),
@@ -388,7 +530,9 @@ INSERT INTO `shop` (`id`, `shop_name`, `address`, `city`, `pin_code`, `country`,
 (27, 'Bike Shop', 'No 9-A/2; Street no 22. Karachi, Pakistan', 'Karachi', '32222', 'Pakistan', 'pk', '9383838', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,2,3,4', '9', '21', '1501758573.jpg', '1497333150.jpeg', 'test@test.com', 15, 'no', 'approved', '0', '17', '5'),
 (28, 'Furniture shop', 'No 23, LADY DOAK COLLEGE ROAD,CHOKKIKULAM,MADURAI', 'Madurai', '625002', 'India', 'Tamilnadu', '565656', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '0,1,2,3,5,6', '2', '22', '1501758828.jpeg', '1497333617.jpeg', 'checking@checking.com', 16, 'no', 'approved', '0', '6', '5'),
 (29, 'sample', 'new', 'dfsa', '32', 'dfsa', 'td', '32', 'dfsa', '0,2', '16', '16', '', '', 'testinguse@gmail.com', 23, 'no', 'approved', '1', '17', '5'),
-(30, 'welcome shop', '3232,well', 'mdu', '3232', 'india', 'ta', '32423', 'fdsa', '0,1,4', '2', '2', '', '', 'well@gmail.com', 25, 'no', 'unapproved', '0', '3', '3');
+(30, 'welcome shop', '3232,well', 'mdu', '3232', 'india', 'ta', '32423', 'fdsa', '0,1,4', '2', '2', '', '', 'well@gmail.com', 25, 'no', 'unapproved', '0', '3', '3'),
+(31, 'Project Intl', '5812 Bridgeway Drive', 'Indian Trail', '28079', 'New Caledonia', 'North Carolina', '08102977068', 'klfssdzdfads', '2,3', '10', '12', '', '', 'support@cajastudios.com', 19, 'no', 'unapproved', '0', '15', '2'),
+(32, 'JUmia', 'fsDAsDDfd', 'jhkda', '14875', 'fSDsas', 'FASDsas', 'fsdAS', 'gFD GFdsA fDs', '0,1,2', '17', '2', '', '', 'cokwedadi@gmail.com', 20, 'no', 'unapproved', '0', '13', '45');
 
 -- --------------------------------------------------------
 
@@ -557,6 +701,7 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `verified` tinyint(1) NOT NULL DEFAULT '0',
   `gender` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -570,18 +715,45 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `phone`, `photo`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$10$QKmqNVSrMGfkOOXxf9L6mOHS69fmxrlCQu6eSi1JoIOL5cbLHJNQ6', 'male', '9876543211', '1497867287.jpg', 1, 'L6YInSPimVJ0bFE07TVRITlENExOa07slWrujWKBLl3X88ZYcxnZZVOGzYzd', '2017-05-25 01:30:45', '2017-05-25 01:30:45'),
-(3, 'wpchecking', 'wpchecking@gmail.com', '$2y$10$xuWJLOqYhkIqJhNUXYAn2uXm4kJlV3oCfLcpOGlb.mTSKXnfN2zyK', 'male', '987645454', '', 2, '6ss7Jc9yWAITXfwAJ5oyF6UqvVwSQomSMk8hR12oi6fvuOwr2DJ4kcwsbo3Z', '2017-05-25 02:15:06', '2017-05-25 02:15:06'),
-(4, 'seller', 'seller@seller.com', '$2y$10$pwVcpcfi9nUebYbOPeH72.Begd5SeSuUhCV8pwgA/n1t9/K7uzDC6', 'male', '9876543210', '1497510195.jpg', 2, '6XMU8JanG1Yqx6UAVlnhSbsG3CALQXUV63XIUysoKHVKeBUhUBUiB5mU8P0N', '2017-05-29 04:11:47', '2017-05-29 04:11:47'),
-(5, 'sample2', 'sample2@gmail.com', '$2y$10$cEtkCBwBEW33SLMdzVe29um2Ac/e.iwejb2gV5mMcATHsFEDHCl4W', 'male', '965666536', '', 2, 'IVAi7HLw7rJmb4bpmuuck7Olo63VAunEvb4jwPfXvNIunQLmBwMtW7ezOMSy', '2017-05-30 02:00:10', '2017-05-30 02:00:10'),
-(12, 'demo', 'demo@demo.com', '$2y$10$hW3H/Bn1DwmN1jCAbGdDtea3DAANC7EpXgs596RhBNhpjSiDPUOIy', 'male', '4654546', '', 2, 'grOIxjZsyhPOIpl56sOq8UacCFtBEj6lxwTQAlDsTV52h5tFA9UnhJy8kZ58', '2017-06-12 06:52:17', '2017-06-12 06:52:17'),
-(13, 'example', 'example@example.com', '$2y$10$GCkim/ZwkXJ5amVWXPQdL.UpVXiGT/OtKk6HiZHwlbrMuU2Di7Xvi', 'male', '2132131', '', 2, 'Q473VsnYY5ODmym8NzPaplzQpFfJgOeA2ihlNomawnYRn3YoAVANQCmNXYN4', '2017-06-12 07:11:47', '2017-06-12 07:11:47'),
-(14, 'sample', 'sample@sample.com', '$2y$10$HXECgnrteWRTez4AHJkpp.sv2Myk97BJIyQdmn4qAyTJ6b4fSf.jG', 'male', '32432', '1497864972.jpg', 2, 'Te0JPnXNX0Yb6KrePLWXtC0KfuLn0R4muCPLgojLTiXJxne6MtdN6N008nAX', '2017-06-12 07:22:31', '2017-06-12 07:22:31'),
-(15, 'test', 'test@test.com', '$2y$10$wrMRdtaRD/4FHnMOkpeZC.GbuB9FizGRET6X3uxZoBtWr3ctE7Dye', 'male', '655554', '', 2, 'mFKDYxLRpaddsNxol7wG3HhKdFoa3oraMjvwpUwWxsnKC58Sx7TG5ooqTKcK', '2017-06-13 00:18:47', '2017-06-13 00:18:47'),
-(16, 'checking', 'checking@checking.com', '$2y$10$F4pp.n0CJTJU6lKAXtVjc.zVGR3Y4VqlUKZPtSVt16fE4QcQmmuAy', 'male', '3243232', '', 2, 'Ribyq1sXB6HRiFqlZfdNMYo2CqIA2k0hnMVCklyItDoVlc0XzvuNW0c4XaQX', '2017-06-13 00:25:28', '2017-06-13 00:25:28'),
-(17, 'customer', 'customer@customer.com', '$2y$10$W5iqjfAHDw.9u4H9cet83O6JMPQ/nysJPLW/w54Cfa66LyBOIvbaS', 'female', '565655', '', 0, 'ahQdj7b1h4SmRBxzAIgN6b2VerDIqJ9UwxPgoAXFvqSmLVWhIduPg5Ma2W3s', '2017-06-13 02:06:25', '2017-06-13 02:06:25'),
-(18, 'newuser', 'newuser@gmail.com', '$2y$10$HbwwAr3cvPbuHjdCVhJ/B.7fFD3bAdCkLMAXPsYrmnElZHhi0rfd.', 'male', '9858554', '', 0, '3bnd72LFHYgCimUdRIirtEte2s0Zr31kRsu04w0jcoZu1bl2ATix7h1lVvrS', NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `verified`, `gender`, `phone`, `photo`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@admin.com', '$2y$10$QKmqNVSrMGfkOOXxf9L6mOHS69fmxrlCQu6eSi1JoIOL5cbLHJNQ6', 0, 'male', '9876543211', '1497867287.jpg', 1, 'g01gfS77dlbxkFhQ0g0g6HlltRD8YxUp0bcrcZAuWj8soCQCiXwbtTNlm37M', '2017-05-25 01:30:45', '2017-05-25 01:30:45'),
+(3, 'wpchecking', 'wpchecking@gmail.com', '$2y$10$xuWJLOqYhkIqJhNUXYAn2uXm4kJlV3oCfLcpOGlb.mTSKXnfN2zyK', 0, 'male', '987645454', '', 2, '6ss7Jc9yWAITXfwAJ5oyF6UqvVwSQomSMk8hR12oi6fvuOwr2DJ4kcwsbo3Z', '2017-05-25 02:15:06', '2017-05-25 02:15:06'),
+(4, 'seller', 'olaleyeife@yahoo.co.uk', '$2y$10$xvCPouKquvebfA7SUjCDQubgdvAVCQZlzK9fJnoFxU4ayIEWjzFai', 0, 'male', '9876543210', '1497510195.jpg', 2, 'b9TQNHybsG9Srskse4jM3ITP9ZXNqd7sZJmyJVdBMb6ym62CAOKGCTwbVQrK', '2017-05-29 04:11:47', '2017-05-29 04:11:47'),
+(5, 'sample2', 'sample2@gmail.com', '$2y$10$cEtkCBwBEW33SLMdzVe29um2Ac/e.iwejb2gV5mMcATHsFEDHCl4W', 0, 'male', '965666536', '', 2, 'IVAi7HLw7rJmb4bpmuuck7Olo63VAunEvb4jwPfXvNIunQLmBwMtW7ezOMSy', '2017-05-30 02:00:10', '2017-05-30 02:00:10'),
+(12, 'demo', 'demo@demo.com', '$2y$10$hW3H/Bn1DwmN1jCAbGdDtea3DAANC7EpXgs596RhBNhpjSiDPUOIy', 0, 'male', '4654546', '', 2, 'grOIxjZsyhPOIpl56sOq8UacCFtBEj6lxwTQAlDsTV52h5tFA9UnhJy8kZ58', '2017-06-12 06:52:17', '2017-06-12 06:52:17'),
+(13, 'example', 'example@example.com', '$2y$10$GCkim/ZwkXJ5amVWXPQdL.UpVXiGT/OtKk6HiZHwlbrMuU2Di7Xvi', 0, 'male', '2132131', '', 2, 'Q473VsnYY5ODmym8NzPaplzQpFfJgOeA2ihlNomawnYRn3YoAVANQCmNXYN4', '2017-06-12 07:11:47', '2017-06-12 07:11:47'),
+(14, 'sample', 'sample@sample.com', '$2y$10$HXECgnrteWRTez4AHJkpp.sv2Myk97BJIyQdmn4qAyTJ6b4fSf.jG', 0, 'male', '32432', '1497864972.jpg', 2, 'Te0JPnXNX0Yb6KrePLWXtC0KfuLn0R4muCPLgojLTiXJxne6MtdN6N008nAX', '2017-06-12 07:22:31', '2017-06-12 07:22:31'),
+(15, 'test', 'test@test.com', '$2y$10$wrMRdtaRD/4FHnMOkpeZC.GbuB9FizGRET6X3uxZoBtWr3ctE7Dye', 0, 'male', '655554', '', 2, 'mFKDYxLRpaddsNxol7wG3HhKdFoa3oraMjvwpUwWxsnKC58Sx7TG5ooqTKcK', '2017-06-13 00:18:47', '2017-06-13 00:18:47'),
+(16, 'checking', 'checking@checking.com', '$2y$10$F4pp.n0CJTJU6lKAXtVjc.zVGR3Y4VqlUKZPtSVt16fE4QcQmmuAy', 0, 'male', '3243232', '', 2, 'Ribyq1sXB6HRiFqlZfdNMYo2CqIA2k0hnMVCklyItDoVlc0XzvuNW0c4XaQX', '2017-06-13 00:25:28', '2017-06-13 00:25:28'),
+(17, 'customer', 'customer@customer.com', '$2y$10$W5iqjfAHDw.9u4H9cet83O6JMPQ/nysJPLW/w54Cfa66LyBOIvbaS', 0, 'female', '565655', '', 0, 'ahQdj7b1h4SmRBxzAIgN6b2VerDIqJ9UwxPgoAXFvqSmLVWhIduPg5Ma2W3s', '2017-06-13 02:06:25', '2017-06-13 02:06:25'),
+(19, 'chukwunye', 'support@cajastudios.com', '$2y$10$Vi0yhNYdtT.mNueLea3Cy.klBg0PNJmZB5uox4QFRELe7CAtViR.C', 0, 'male', '08102977068', '', 2, NULL, '2018-04-05 16:54:58', '2018-04-05 16:54:58'),
+(20, 'chichi', 'cokwedadi@gmail.com', '$2y$10$7KX/6cx3FyXh6.se5DGFGO.mutz3BT8oLxW9XuOLHbLk5SfqZ..vy', 0, 'male', '0810265816185', '', 2, NULL, '2018-04-05 20:03:30', '2018-04-05 20:03:30'),
+(21, 'Yefta', 'yevtha.aw@gmail.com', '$2y$10$ge2nQSuHrbKDkY4YrzC2Q.AHsRj6tY4OI/vYKJKd7Onpe3rjMQH92', 0, 'male', '08907907080', '', 0, 'DQDjTFaJPhoJhc6PvHlE9jqiWHqkIYiLwguIuhYTAWQaRrOgD3LMU2kQqWiJ', '2018-04-06 04:39:51', '2018-04-06 04:39:51'),
+(22, 'Indah', 'indah@gmail.com', '$2y$10$SaqmNkkCkXqe89K0PeqePOcWmIKSqzoFfqaKWst5WyvAtDU9F3XC.', 0, 'male', '08678589696', '', 2, 'yKGPvHiTv0jsPFkjZ0HuWMHzm5W933issa0bIGUmO0eogBn0Ssi5yZ2vIB4x', '2018-04-06 04:41:02', '2018-04-06 04:41:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verify_users`
+--
+
+CREATE TABLE `verify_users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `verify_users`
+--
+
+INSERT INTO `verify_users` (`id`, `user_id`, `token`, `created_at`, `updated_at`) VALUES
+(1, 19, 'c1dc806c677cbecaeb8bc1a9df8f304365ec9210ca3596bf1e0f34e795144078', '2018-04-05 16:54:58', '2018-04-05 16:54:58'),
+(2, 20, '3ecd7efa34f0801bd2c8303524d4d389592af62cff7f1cb755902de7bf9d06ae', '2018-04-05 20:03:30', '2018-04-05 20:03:30'),
+(3, 21, 'defba97513171113d10dce80a15c7ed79bd53117e16e8d845094b01791a00767', '2018-04-06 04:39:51', '2018-04-06 04:39:51'),
+(4, 22, '52e4fd292e5ea0a2d238c784f19a68fc1bc72428d6fc926570d0807eb3587b14', '2018-04-06 04:41:02', '2018-04-06 04:41:02');
 
 -- --------------------------------------------------------
 
@@ -630,10 +802,57 @@ ALTER TABLE `contact_vendor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_reserved_at_index` (`queue`,`reserved_at`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_personal_access_clients_client_id_index` (`client_id`);
+
+--
+-- Indexes for table `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
 -- Indexes for table `pages`
@@ -721,6 +940,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `verify_users`
+--
+ALTER TABLE `verify_users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `withdraw`
 --
 ALTER TABLE `withdraw`
@@ -743,10 +968,34 @@ ALTER TABLE `contact_vendor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -782,7 +1031,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `shop_gallery`
@@ -824,7 +1073,13 @@ ALTER TABLE `ticket_messages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `verify_users`
+--
+ALTER TABLE `verify_users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `withdraw`
