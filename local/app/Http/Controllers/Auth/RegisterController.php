@@ -55,14 +55,14 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
+        $request->session()->flash('need_email_confirmation', true);
+        $request->session()->flash('confirmation_title', 'You have successfully registered!');
+        $request->session()->flash('confirmation_message', 'Thanks for registering with GuardME. A confirmation email was sent to <strong>'.$request->input('email').'</strong>. Please check your email and click confirm to verify your email address');
+
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath())->with([
-                'need_email_confirmation' => true,
-                'confirmation_title'      => 'You have successfully registered!',
-                'confirmation_message'    => 'Thanks for registering with GuardME. We have sent you a verification email. Please check your email and click confirm to verify your email address.'
-            ]);
+                        ?: redirect($this->redirectPath());
     }
 
     /**

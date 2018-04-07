@@ -86,9 +86,9 @@ class VerificationController extends Controller
         }
 
         if ($email) {
-            $confirmation_message = 'We have already resent a verification link to '.$email.'. Your email will not be changed until you confirm!';
+            $confirmation_message = 'A confirmation email was sent to <strong>'.$email.'</strong>. Your email will not be changed until you confirm.';
         } else {
-            $confirmation_message = 'We have already resent a verification link to '.\Auth::user()->email;
+            $confirmation_message = 'A confirmation email was sent to <strong>'.\Auth::user()->email.'</strong>. You will not receive vital information and updates if your email address is not confirmed';
         }
 
         return redirect('/user/confirmation')
