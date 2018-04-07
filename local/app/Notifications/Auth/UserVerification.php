@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Responsive\Mail\ChangeEmailAddress as Mailable;
 
-class UserVerification extends Notification
+class UserVerification extends Notification implements ShouldQueue
 {
     use Queueable;
 
