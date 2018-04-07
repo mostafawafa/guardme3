@@ -67,14 +67,12 @@
 					<?php $sta=$editprofile[0]->admin; if($sta==1){ $viewst="Admin"; } else if($sta==2) { $viewst="Seller"; } else if($sta==0) { $viewst="Customer"; } ?>
 					<div class="profile-usertitle-job">
 						<div style="margin-bottom:5px">
-							@if(\Auth::user()->verified)
+							@if(Auth::user()->verified)
 								<span class="text-success">
 									<i class="fa fa-check-circle"></i> Email verified
 								</span>
 							@endif
 						</div>
-
-						User Type : <?php echo $viewst;?>
 					</div>
 				</div>
 
