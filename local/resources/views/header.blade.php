@@ -15,7 +15,7 @@ $setid=1;
 		<div class="pull-left" style="margin-top: 8px">
 			A confirmation email was sent to <strong>{{ $changedEmail = \Auth::user()->verification->new_email ?: \Auth::user()->email }}</strong>.
 
-			@if($changedEmail)
+			@if(\Auth::user()->verification->new_email)
 				Your email will not be changed until you confirm!
 			@else
 				Please check your inbox and verify your email address.
