@@ -68,7 +68,9 @@
 					<div class="profile-usertitle-job">
 						<div style="margin-bottom:5px">
 							@if(\Auth::user()->verified)
-								<span class="text-success">Email Verified</span>
+								<span class="text-success">
+									<i class="fa fa-check-circle"></i> Email verified
+								</span>
 							@endif
 						</div>
 
@@ -101,7 +103,6 @@
                                                             ->where('seller_email', '=',$sellmail)
                                                             ->count();
                                                 ?>
-                                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>"><i class="fa fa-gear" aria-hidden="true"></i>Dashboard</a></li>
 						<?php if($sta!=1){?>
 						<li>
 						<?php if(config('global.demosite')=="yes"){?>
