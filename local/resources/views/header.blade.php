@@ -9,13 +9,13 @@ $setid=1;
 
 
 ?>
-@if($isVerified = (\Auth::check() && ! \Auth::user()->verified && ! session('need_email_confirmation')))
+@if($isVerified = (Auth::check() && ! Auth::user()->verified && ! session('need_email_confirmation')))
 <div class="alert alert-warning" role="alert" style="position: fixed;top: 0px;left: 0px;width: 100%;z-index:9999;border-radius:0px;padding:5px;">
 	<div class="container">
 		<div class="pull-left" style="margin-top: 8px">
-			A confirmation email was sent to <strong>{{ $changedEmail = \Auth::user()->verification->new_email ?: \Auth::user()->email }}</strong>.
+			A confirmation email was sent to <strong>{{ $changedEmail = Auth::user()->verification->new_email ?: Auth::user()->email }}</strong>.
 
-			@if(\Auth::user()->verification->new_email)
+			@if(Auth::user()->verification->new_email)
 				Your email will not be changed until you confirm!
 			@else
 				Please check your inbox and verify your email address.
