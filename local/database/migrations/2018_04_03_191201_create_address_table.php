@@ -25,7 +25,8 @@ class CreateAddressTable extends Migration
             $table->string('citytown', 100);
             $table->string('country',150);
             $table->string('latitude',150);
-            $table->string('longitude',150);            
+            $table->string('longitude',150);   
+            $table->timestamps();
         });
     }
     /**
