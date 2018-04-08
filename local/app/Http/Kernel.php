@@ -3,6 +3,7 @@
 namespace Responsive\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Responsive\Http\Middleware\ApiResponseMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -39,6 +40,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            ApiResponseMiddleware::class
         ],
     ];
 
