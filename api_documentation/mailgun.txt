@@ -1,0 +1,13 @@
+GET
+1. http://BASE_URL/api/user/verification/status?uid=USER_ID
+   Usability: To check current verified status
+   Parameter: uid => User ID
+
+POST
+1. http://BASE_URL/api/user/verified
+   Usability: To set email as verified
+   Parameter: user_id => User ID
+
+2. http://BASE_URL/api/user/unverified
+   Usability: To set email as unverified
+   Parameter: user_id => User ID
