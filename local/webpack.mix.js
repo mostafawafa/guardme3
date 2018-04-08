@@ -11,5 +11,6 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.setPublicPath('../')
+.js('resources/assets/js/vue_axios.js', 'js')
+.js('resources/assets/js/verification/phone.js', 'js/phone.min.js')

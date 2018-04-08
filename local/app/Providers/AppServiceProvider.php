@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\Schema;
 
+use Responsive\Contracts\SMSProviderContract;
+use Responsive\Wrappers\TwilioServiceWrapper;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton(SMSProviderContract::class, function () {
+            return new TwilioServiceWrapper(config('services.twilio'));
+        });
     }
 }

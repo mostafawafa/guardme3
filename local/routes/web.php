@@ -1,5 +1,8 @@
 <?php
 
+use Responsive\Channels\SMS;
+use Responsive\Http\Repositories\UsersRepository;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -294,5 +297,9 @@ Route::group(['prefix' => '/support/tickets', 'middleware' => 'auth'], function 
     Route::post('/{id}/messages', 'MessageController@store')->where('id', '[0-9]+')
         ->name('tickets.messages.store');
 });
+
+
+
+Route::get('/phone', 'VerificationController@phone')->middleware('auth');
 
 

@@ -34,5 +34,11 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
+    'twilio' => [
+        'from'    => env('TWILIO_FROM'),
+        'token'   => env('TWILIO_TOKEN'),
+        'account' => env('TWILIO_ACCOUNT'),
+    ],
 
 ];
