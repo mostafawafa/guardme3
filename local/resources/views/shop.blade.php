@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 
-   
+
 
    @include('style')
-	
+
 
 
 
@@ -13,53 +13,53 @@
 </head>
 <body>
 
-    <?php 
-	
+    <?php
+
 	$url = URL::to("/"); ?>
 
     <!-- fixed navigation bar -->
     @include('header')
 
     <!-- slider -->
-    
 
-	
-    
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 	<div class="clearfix"></div>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<div class="video">
 	<div class="clearfix"></div>
 	<div class="headerbg">
 	 <div class="col-md-12" align="center"><h1>Account</h1></div>
 	 </div>
 	<div class="">
-	 
-	 
-	 
-	
-	 
-	 
-	 
-	 
-	 
-	 
+
+
+
+
+
+
+
+
+
+
 	 <?php if($shopcount==1){?>
 	 <div class="profile shop">
-		
-		
+
+
 		<div class="fb-profile">
-	<?php 
+	<?php
 					   $shopheader="/shop/";
 						$path ='/local/images'.$shopheader.$shop[0]->cover_photo;
 						if($shop[0]->cover_photo!=""){
@@ -68,7 +68,7 @@
 						<?php } else { ?>
 						<img align="left" class="fb-image-lg" src="<?php echo $url.'/local/images/no-image-big.jpg';?>" alt="cover banner"/>
 						<?php } ?>
-		
+
 		<?php $shopphoto="/shop/";
 						$paths ='/local/images'.$shopphoto.$shop[0]->profile_photo;
 						if($shop[0]->profile_photo!=""){?>
@@ -81,48 +81,48 @@
             <p><?php echo $shop[0]->address;?></p>
         </div>
     </div>
-		
+
 		<div class="container">
 	<div class="row">
-		
-        <div class="col-md-12">
-                
-				
-				<div class="clearfix"></div>
-    
 
-				
-				
-				
+        <div class="col-md-12">
+
+
+				<div class="clearfix"></div>
+
+
+
+
+
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a href="#inbox" data-toggle="tab"><span class="lnr lnr-user blok"></span> Freelancer Profile</a></li>
       <li><a href="#sent" data-toggle="tab"><span class="lnr lnr-cog blok"></span> Employer Profile</a></li>
       <li><a href="#assignment" data-toggle="tab"><span class="lnr lnr-star blok"></span> Reviews</a></li>
-      
+
     </ul>
-    
+
     <div class="tab-content">
-	
-	
+
+
 	<div class="tab-pane active" id="inbox">
        <div class="clearfix"></div>
 
        <div class="clearfix"></div>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<div class="video">
 	<div class="clearfix"></div>
 	<div class="container">
-	
+
     <div class="row profile">
 		<div class="col-md-3 ">
 			<div class="profile-sidebar">
-				
+
 				<div class="profile-userpic">
-				<?php 
+				<?php
 				$url = URL::to("/");
 				$userphoto="/userphoto/";
 						$path ='/local/images'.$userphoto.$editprofile[0]->photo;
@@ -132,20 +132,29 @@
 						<img src="<?php echo $url.'/local/images/nophoto.jpg';?>" class="img-responsive" alt="">
 						<?php } ?>
 				</div>
-				
+
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						<?php echo $editprofile[0]->name;?> 
+						<?php echo $editprofile[0]->name;?>
 					</div>
 					<?php $sta=$editprofile[0]->admin; if($sta==1){ $viewst="Admin"; } else if($sta==2) { $viewst="Seller"; } else if($sta==0) { $viewst="Customer"; } ?>
+					<div class="profile-usertitle-job">
+						<div style="margin-bottom:5px">
+							@if(Auth::user()->verified)
+								<span class="text-success">
+									<i class="fa fa-check-circle"></i> Email verified
+								</span>
+							@endif
+						</div>
+					</div>
 				</div>
-				
+
 				<div class="profile-userbuttons">
 					<a href="<?php echo $url;?>/my_bookings" class="btn btn-success btn-sm">My Bookings</a>
 					<?php /* ?><a href="{{ route('logout') }}" class="btn btn-danger btn-sm">Sign Out</a><?php */?>
-					
+
 				</div>
-				
+
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<!--<li class="active">
@@ -172,11 +181,11 @@
 						<?php if(config('global.demosite')=="yes"){?>
 						<a href="#" class="btndisable"> <i class="fa fa-trash-o" aria-hidden="true"></i>
 							Delete Account <span class="disabletxt" style="font-size:13px;">( <?php echo config('global.demotxt');?> )</span>
-							</a> 
+							</a>
 						<?php } else { ?>
-						
+
 							<a href="<?php echo $url;?>/delete-account" onclick="return confirm('Are you sure you want to delete your account?');">
-							
+
 							<i class="fa fa-trash-o" aria-hidden="true"></i>
 							Delete Account
 							</a>
@@ -199,12 +208,12 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="col-md-9 moves20">
             <div class="profile-content">
-			   
+
 			   @if(Session::has('success'))
 
 	    <div class="alert alert-success">
@@ -216,8 +225,8 @@
 	@endif
 
 
-	
-	
+
+
  	@if(Session::has('error'))
 
 	    <div class="alert alert-danger">
@@ -227,7 +236,7 @@
 	    </div>
 
 	@endif
-			   
+
 			   <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('dashboard') }}" id="formID" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -266,16 +275,16 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control"  name="password" value="">
 
-                                
+
                             </div>
                         </div>
 
-                        
-						
+
+
 						<input type="hidden" name="savepassword" value="<?php echo $editprofile[0]->password;?>">
-						
+
 						 <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
-						
+
 						 <div class="form-group">
                             <label for="phoneno" class="col-md-4 control-label">Phone No</label>
 
@@ -283,26 +292,26 @@
                                 <input id="phone" type="text" class="form-control validate[required] text-input" value="<?php echo $editprofile[0]->phone;?>" name="phone">
                             </div>
                         </div>
-						
-						
-						
+
+
+
 						<div class="form-group">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
 							<select name="gender" class="form-control validate[required] text-input">
-							  
+
 							  <option value=""></option>
 							   <option value="male" <?php if($editprofile[0]->gender=='male'){?> selected="selected" <?php } ?>>Male</option>
 							   <option value="female" <?php if($editprofile[0]->gender=='female'){?> selected="selected" <?php } ?>>Female</option>
 							</select>
-                               
+
                             </div>
                         </div>
-						
-						
-						
-						
+
+
+
+
 						<div class="form-group">
                             <label for="phoneno" class="col-md-4 control-label">Photo</label>
 
@@ -315,18 +324,18 @@
                                 @endif
                             </div>
                         </div>
-						
-						
+
+
 						<input type="hidden" name="currentphoto" value="<?php echo $editprofile[0]->photo;?>">
-						
-						
+
+
 						<input type="hidden" name="usertype" value="<?php echo $editprofile[0]->admin;?>">
-						
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
 							<?php if(config('global.demosite')=="yes"){?><button type="button" class="btn btn-primary btndisable">Update</button> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span><?php } else { ?>
-							
+
                                 <button type="submit" class="btn btn-primary">
                                     Update
                                 </button>
@@ -338,41 +347,41 @@
             </div>
 		</div>
 	</div>
-	 
-	 
+
+
 	<div class="height30"></div>
 	<div class="row">
-	
-	
+
+
 	</div>
-	
+
 	</div>
 	</div>
       </div>
-     
-	 
-	 
-	 
-	 
-       
+
+
+
+
+
+
       <div class="tab-pane" id="sent">
            <div class="clearfix"></div>
-		   
+
 		 <div class="col-md-12">
 		    <div class="col-md-6">
 			    <h3>Description</h3>
 		    	    <p><?php echo $shop[0]->description;?></p><br/>
-		    </div>	
+		    </div>
 		 <div class="col-md-6 contact_address">
 			<h3>Contact Address</h3>
 				<p><span class="lnr lnr-map-marker"></span> <?php echo  ' '.$shop[0]->address;?><br>
 				<?php echo $shop[0]->city;?> - <?php echo $shop[0]->pin_code;?><br>
 				<?php echo $shop[0]->state;?><br>
 				<?php echo $shop[0]->country;?></p>
-								<p> <span class="lnr lnr-clock"></span> <?php echo $stime;?> - <?php echo $etime;?></p> 
+								<p> <span class="lnr lnr-clock"></span> <?php echo $stime;?> - <?php echo $etime;?></p>
 			</div>
 				</div>
-				
+
 				<div class="col-md-12">
 				<div class="col-md-6 working_day">
 								<h3>Shop Working Days</h3>
@@ -383,35 +392,35 @@
 					<p><?php for($i=0;$i<$lev;$i++){ if($sel[$i]=="4") echo "Thursday"; }?></p>
 					<p><?php for($i=0;$i<$lev;$i++){ if($sel[$i]=="5") echo "Friday "; }?></p>
 					<p><?php for($i=0;$i<$lev;$i++){ if($sel[$i]=="6") echo "Saturday"; }?></p>
-					
+
 				</div>
-			
+
 			<div class="col-md-6">
 				<h3>Shop Status </h3>
 				<p><?php echo $shop[0]->status;?></p>
 			</div>
 			</div>
 		</div>
-      
-	  
-	  
-	  
-	  
-      
+
+
+
+
+
+
       <div class="tab-pane" id="assignment">
 	 <div class="clearfix"></div>
-	 
+
 	 <?php if($rating_count==0) {?>
 	 <div class="row">
 	 <div class="col-md-12">
 	 <div class="rating">
 	 No Reviews
 	 </div>
-       
+
 		</div>
-	</div>	
+	</div>
 	 <?php } else { ?>
-	 
+
 	 <div class="row">
 	 <div class="col-md-12">
 	 <?php foreach($rating as $newrating){?>
@@ -428,96 +437,96 @@
 		<img src="<?php echo $url.$starpath;?>" class="star_rates" alt="rated <?php if($newrating->rating==""){ echo "0"; } else { echo $newrating->rating; }?> stars" title="rated <?php if($newrating->rating==""){ echo "0"; } else { echo $newrating->rating; }?> stars" />  - &nbsp; <?php  echo $newrating->name;?>
 		<h4> <?php echo $newrating->comment; ?></h4>
 		<?php
-		
+
 		?>
-		  
+
 		</div>
 	 <?php } ?>
-	 
+
 	 </div>
 	 </div>
-	 
+
 	 <?php } ?>
-	 
-	 
-		
-		
+
+
+
+
      </div>
-     
-     
-    
-    
-        
+
+
+
+
+
     </div>
-	
+
 	<div class="clearfix"></div>
-	
+
 	<div class="form-group">
 		<div class="row">
 		<div class="col-md-12">
 			<div>
 					<a href="<?php echo $url;?>/editshop/<?php echo $shop[0]->id;?>" class="btn btn-success btn-md radiusoff">Edit Shop</a>
 					<a href="<?php echo $url;?>/services" class="btn btn-danger btn-md radiusoff">Edit Services</a>
-					
+
 				</div>
-			</div>	
-				
+			</div>
+
 		</div>
 	</div>
-	
 
-	
+
+
 
      </div>
 	</div>
-    
-    
+
+
 </div>
 
 
 
 
 
-            
-    
-		
-		
-		
-		
-		
-	</div>	
-	
-	
+
+
+
+
+
+
+
+	</div>
+
+
 	 <?php } ?>
-	 
-	 
-	 
-	
-	 
-	 
-	
-	
-	
-	
-	 
-	 
-	 
-	 
-	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	 <div class="height30"></div>
 	 <div class="row">
-	
-	
-	
-	
-	
+
+
+
+
+
 	</div>
-	
+
 	</div>
 	</div>
-	
-	
-	
+
+
+
 
       <div class="clearfix"></div>
 	   <div class="clearfix"></div>

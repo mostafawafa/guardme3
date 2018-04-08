@@ -12,7 +12,7 @@ class VerifyUser extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'token'
+        'user_id', 'token', 'new_email'
     ];
 
     /**
@@ -21,5 +21,10 @@ class VerifyUser extends Model
     public function user()
     {
        return $this->belongsTo(User::class);
+    }
+
+    public function hasToken()
+    {
+        return $this->token ? true : false;
     }
 }

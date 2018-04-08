@@ -5,8 +5,6 @@ namespace Responsive;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Responsive\Exceptions\Auth\UserIsVerifiedException;
-use Responsive\Exceptions\Auth\UserIsNotVerifiedException;
 use Laravel\Passport\HasApiTokens;
 use Carbon\Carbon;
 
@@ -50,7 +48,7 @@ class User extends Authenticatable
     public static function findByVerificationToken($token)
     {
         return static::leftJoin('verify_users', 'users.id', '=', 'verify_users.user_id')
-                     ->select('users.*', 'verify_users.token as verification_token')
+                     ->select('users.*', 'verify_users.token as verification_token', 'verify_users.new_email')
                      ->where('verify_users.token', $token)
                      ->firstOrFail();
     }
@@ -90,43 +88,16 @@ class User extends Authenticatable
      */
     public function processVerify()
     {
-        $this->checkVerifiedStatus();
-
         // update verified status
         $this->update([
             'verified' => true
         ]);
 
+        // verify new mail if user change their email
+        $this->verifyNewEmail();
+
         // delete stored token
         $this->verification()->delete();
-    }
-
-    /**
-     * Check if the user is verified
-     *
-     * @return void
-     *
-     * @throws \Responsive\Exceptions\Auth\UserIsVerifiedException
-     */
-    public function checkVerifiedStatus()
-    {
-        if ($this->verified) {
-            throw new UserIsVerifiedException();
-        }
-    }
-
-    /**
-     * Check if the user is not verified
-     *
-     * @return void
-     *
-     * @throws \Responsive\Exceptions\Auth\UserIsNotVerifiedException
-     */
-    public function checkUnverifiedStatus()
-    {
-        if (! $this->verified) {
-            throw new UserIsNotVerifiedException();
-        }
     }
 
     /**
@@ -136,11 +107,36 @@ class User extends Authenticatable
      */
     public function setAsUnverified()
     {
-        $this->checkUnverifiedStatus();
-
         $this->update([
             'verified' => false
         ]);
+    }
+
+    /**
+     * Handle change email
+     *
+     * @param $change_email
+     * @return void
+     */
+    public function changeEmail($new_email)
+    {
+        $this->verification()->update([
+            'new_email' => $new_email
+        ]);
+    }
+
+    /**
+     * Update new email address in users and shop tables
+     *
+     * @return void
+     */
+    private function verifyNewEmail()
+    {
+        if ($new_email = $this->verification->new_email) {
+            $this->update(['email' => $new_email]);
+
+            \DB::update('update shop set seller_email="'.$new_email.'" where user_id = ?', [$this->id]);
+        }
     }
 
     /**

@@ -84,6 +84,7 @@
 
 	@include('shared.message')
 
+
     <div class="row profile">
 		<div class="col-md-3 ">
 			<div class="profile-sidebar">
@@ -107,12 +108,12 @@
 					<?php $sta=$editprofile[0]->admin; if($sta==1){ $viewst="Admin"; } else if($sta==2) { $viewst="Seller"; } else if($sta==0) { $viewst="Customer"; } ?>
 					<div class="profile-usertitle-job">
 						<div style="margin-bottom:5px">
-							@if(\Auth::user()->verified)
-								<span class="text-success">Email Verified</span>
+							@if(Auth::user()->verified)
+								<span class="text-success">
+									<i class="fa fa-check-circle"></i> Email verified
+								</span>
 							@endif
 						</div>
-
-						User Type : <?php echo $viewst;?>
 					</div>
 				</div>
 
@@ -141,7 +142,6 @@
                                                             ->where('seller_email', '=',$sellmail)
                                                             ->count();
                                                 ?>
-                                                <li><a href="<?php if(empty($shcount)){?><?php echo $url;?>/addcompany<?php } else { ?><?php echo $url;?>/account<?php } ?>"><i class="fa fa-gear" aria-hidden="true"></i>Dashboard</a></li>
 						<?php if($sta!=1){?>
 						<li>
 						<?php if(config('global.demosite')=="yes"){?>
