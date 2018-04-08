@@ -1,0 +1,161 @@
+#flexiselDemo1, #flexiselDemo2, #flexiselDemo3 {
+display:none;
+}
+
+.nbs-flexisel-container {
+    position:relative;
+    max-width:100%;
+}
+.nbs-flexisel-ul {
+    position:relative;
+    width:99999px;
+    margin:0px;
+    padding:0px;
+    list-style-type:none;   
+    text-align:center;  
+}
+
+.nbs-flexisel-inner {
+    position: relative;
+    overflow: hidden;
+    float:left;
+    width:100%;
+   
+		
+}
+
+
+.nbs-flexisel-item {
+    float:left;
+    margin:0px;
+    padding:0px;
+   
+    position:relative;
+   
+}
+/*.nbs-flexisel-item img {
+    min-width: 250px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+	max-height:150px;
+	
+}*/
+
+/*** Navigation ***/
+
+.nbs-flexisel-nav-left,
+.nbs-flexisel-nav-right {
+       
+    position: absolute;
+    cursor: pointer;
+    z-index: 4;
+    top:40%;
+    
+      
+}
+
+.nbs-flexisel-nav-left {
+    left: 0px;
+}
+
+.nbs-flexisel-nav-left:before {
+    background: url(../img/left-arrow.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	left: 0px;
+    
+    position: absolute;
+}
+.nbs-flexisel-nav-right:before {
+    background: url(../img/right-arrow.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	right: 0px;
+    
+    position: absolute;
+}
+
+
+
+
+.nbs-flexisel-nav-right {
+    right: 0px;    
+}
+
+
+
+
+@media screen and (max-width: 767px) {
+	.nbs-flexisel-nav-left:before {
+    background: url(../img/left-white.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	left: 0px;
+    
+    position: absolute;
+}
+
+.nbs-flexisel-nav-right:before {
+    background: url(../img/right-white.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	right: 0px;
+    
+    position: absolute;
+}
+
+
+.testimons  .nbs-flexisel-nav-left:before {
+    background: url(../img/left-arrow.png) no-repeat !important; 
+	width:24px;
+	height:24px;
+	content: " ";
+	left: 0px;
+    
+    position: absolute;
+}
+
+
+.testimons .nbs-flexisel-nav-right:before {
+    background: url(../img/right-arrow.png) no-repeat !important; 
+	width:24px;
+	height:24px;
+	content: " ";
+	right: 0px;
+    
+    position: absolute;
+}
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+{
+	
+	.nbs-flexisel-nav-left:before {
+    background: url(../img/left-arrow.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	left: 0px;
+    
+    position: absolute;
+}
+
+.nbs-flexisel-nav-right:before {
+    background: url(../img/right-arrow.png) no-repeat; 
+	width:24px;
+	height:24px;
+	content: " ";
+	right: 0px;
+    
+    position: absolute;
+}
+	
+}
+
