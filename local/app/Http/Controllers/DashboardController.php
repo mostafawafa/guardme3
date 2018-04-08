@@ -208,7 +208,7 @@ class DashboardController extends Controller
 
 			$admin=$data['usertype'];
                         //Address save                
-                        $address = Address::where('user_id', Auth::user()->id)->get();
+                        $address = Address::where('user_id', Auth::user()->id)->first();
                         $postcode = isset($data['postcode'])?$data['postcode']:'';
                         $houseno = isset($data['houseno'])?$data['houseno']:'';
                         $line1 = isset($data['line1'])?$data['line1']:'';
