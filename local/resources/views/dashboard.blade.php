@@ -3,10 +3,29 @@
 <head>
 
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
    @include('style')
 
 
+
+   <style type="text/css">
+.noborder ul,li { margin:0; padding:0; list-style:none;}
+.noborder .label { color:#000; font-size:16px;}
+.update{
+
+	margin-top:10px
+}
+.page-title{
+	margin-bottom: 20px
+}
+</style>
+
+	<script>
+		   window.verificationConfig =  {
+			  url  : "{{ url('/') }}"
+		  }
+	  </script>
 
 
 
@@ -41,8 +60,30 @@
 	<div class="headerbg">
 	 <div class="col-md-12" align="center"><h1>Freelancer Profile</h1></div>
 	 </div>
-	<div class="container">
+	<div class="container" id='phone'>
 		<div style="margin-top: 20px;"></div>
+		@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+	@if(! \Auth::user()->verified)
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="alert alert-warning">
+					We have already sent email verification to your email. Please check and confirm via the given link. Have not received yet? <a href="{!! route('user.resend_verification') !!}" class="alert-link">Resend email verification</a>.
+				</div>
+			</div>
+		</div>
+	@endif
+
+
+	@include('shared.message')
+
 
     <div class="row profile">
 		<div class="col-md-3 ">
@@ -203,16 +244,49 @@
 
 						 <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
 
-						 <div class="form-group">
-                            <label for="phoneno" class="col-md-4 control-label">Phone No</label>
+						 <div>
+							 <h4 class="text-center page-title">
+								 <i class="fa fa-phone"></i>
+				 
+								 <template v-if="action === 'new'"> Phone verification</template>
+								 <template v-if="action === 'unbind'"> Remove phone number</template>
+								 <template v-if="action === 'confirm'"> SMS Confirmation</template>
+							 </h4>
+						 </div>
+				 
+										 <div class="form-group">
+											 <label class="control-label col-md-4 ">
+												 Phone Number <template v-if="action === 'confirm'">(<a href="#" @click.prevent="change">change</a>)</template>
+											 </label>
+											 <div class="col-md-6" >
+												 <input class="form-control" type="text" v-model="phone"
+														:disabled="action === 'unbind' || (action === 'confirm' && user.phone_verified)" />
+											 </div>
+										 </div>
+				 
+										 <div  class="form-group " id="confirmation-code">
+										 <template v-if="action === 'confirm'">
+											 <label  class="control-label col-md-4">Confirmation code</label>
+											 <div class="col-md-6">
+												 <input class="form-control" type="text" v-model="code" />
+											 </div>
+										 </template>
+										 </div>
+										 <div class="form-group">
 
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control validate[required] text-input" value="<?php echo $editprofile[0]->phone;?>" name="phone">
-                            </div>
-                        </div>
+									 <div class="col-md-6 col-md-offset-4">
+									 <a href="#" @click.prevent="send" class="btn btn-primary text" >
+										 <template v-if="action === 'confirm'">OK!</template>
+										 <template v-else-if="action === 'unbind'">Remove Phone Number</template>
+										 <template v-else-if="action === 'new'">Send confirmation code</template>
+									 </a>
+									 </div>
+										 </div>
+							
+						
 
-
-
+		
+		
 						<div class="form-group">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
 
@@ -254,12 +328,16 @@
                             <div class="col-md-6 col-md-offset-4">
 							<?php if(config('global.demosite')=="yes"){?><button type="button" class="btn btn-primary btndisable">Update</button> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span><?php } else { ?>
 
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary update">
                                     Update
-                                </button>
+								</button>
+								
+								
 							<?php } ?>
                             </div>
-                        </div>
+						</div>
+						
+		
                     </form>
                 </div>
             </div>
@@ -273,6 +351,7 @@
 
 	</div>
 
+
 	</div>
 	</div>
 
@@ -282,6 +361,9 @@
       <div class="clearfix"></div>
 	   <div class="clearfix"></div>
 
-      @include('footer')
+
+	  @include('footer')
+	  <script src="{{ asset('js/vue_axios.js') }}"></script>
+	<script src="{{ asset('js/phone.min.js') }}"></script>
 </body>
 </html>

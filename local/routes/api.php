@@ -21,3 +21,16 @@ Route::group(['prefix' => '/support/tickets', 'middleware' => 'auth:api'], funct
     Route::put('/{id}', 'TicketController@update')->where('id', '[0-9]+');
     Route::post('/{id}/messages', 'MessageController@store')->where('id', '[0-9]+');
 });
+
+
+/**
+ * 
+ * Routes for verfication of users phone numbers
+ * 
+ */
+
+Route::group(['prefix' => 'verify'], function () {
+    Route::post('/otp', 'Api\VerificationController@otp');
+    Route::post('/confirm', 'Api\VerificationController@confirm');
+    Route::post('/change', 'Api\VerificationController@change');
+});

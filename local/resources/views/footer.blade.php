@@ -199,5 +199,4 @@ $('#langOpt').multiselect({
 });
 </script>
 
-	
 	<?php /* ?><script src="{{ asset('js/app.js') }}"></script><?php */?>

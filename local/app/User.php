@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -147,4 +148,23 @@ class User extends Authenticatable
     {
         return hash_hmac('sha256', Str::random(40), config('app.key'));
     }
+
+
+
+    /**
+     * Get One Time Password (valid for 5 minutes).
+     *
+     * @return string
+     */
+    public function getOTP()
+    {
+        $now      = Carbon::now();
+        $lifetime = 300; // 5 minutes
+        $periods  = intdiv($now->timestamp - $now->copy()->startOfDay()->timestamp, $lifetime);
+        $unique   = $now->toDateString() . $lifetime * $periods . $this->phone;
+        $password = hash_hmac('sha512', $unique, config('app.key'));
+
+        return substr(strtoupper($password), 0, 5);
+    }
+
 }
