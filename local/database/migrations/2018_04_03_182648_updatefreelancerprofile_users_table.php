@@ -13,21 +13,21 @@ class UpdatefreelancerprofileUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('firstname', 50)->collation('utf8mb4_unicode_ci')->after('name');
-            $table->string('lastname', 50)->collation('utf8mb4_unicode_ci')->after('firstname');
-            $table->string('dob', 10)->collation('utf8mb4_unicode_ci')->after('lastname');
-            $table->tinyInteger('address_id')->after('dob');
-            $table->string('sia_licence', 50)->collation('utf8mb4_unicode_ci')->after('address_id');
-            $table->string('sia_expirydate', 10)->collation('utf8mb4_unicode_ci')->after('sia_licence');
-            $table->tinyInteger('work_category')->after('sia_expirydate');
-            $table->tinyInteger('nation_id')->after('work_category');
-            $table->string('visa_no', 50)->collation('utf8mb4_unicode_ci')->after('nation_id');
-            $table->string('niutr_no', 50)->collation('utf8mb4_unicode_ci')->after('visa_no');
-            $table->string('pass_page', 200)->collation('utf8mb4_unicode_ci')->after('visa_no');
-            $table->string('visa_page', 200)->collation('utf8mb4_unicode_ci')->after('visa_no');
-            $table->string('sia_doc', 200)->collation('utf8mb4_unicode_ci')->after('visa_page');
-            $table->string('address_proof', 200)->collation('utf8mb4_unicode_ci')->after('sia_doc');
-            $table->string('passphoto', 200)->collation('utf8mb4_unicode_ci')->after('address_proof');
+            $table->string('firstname', 50);
+            $table->string('lastname', 50);
+            $table->string('dob', 10);
+            $table->tinyInteger('address_id');
+            $table->string('sia_licence', 50);
+            $table->string('sia_expirydate', 10);
+            $table->tinyInteger('work_category');
+            $table->tinyInteger('nation_id');
+            $table->string('visa_no', 50);
+            $table->string('niutr_no', 50);
+            $table->string('pass_page', 200);
+            $table->string('visa_page', 200);
+            $table->string('sia_doc', 200);
+            $table->string('address_proof', 200);
+            $table->string('passphoto', 200);
         });
     }
     /**
@@ -50,6 +50,9 @@ class UpdatefreelancerprofileUsersTable extends Migration
             $table->dropColumn('niutr_no');
             $table->dropColumn('pass_page');
             $table->dropColumn('visa_page');
+            $table->dropColumn('sia_doc');
+            $table->dropColumn('address_proof');
+            $table->dropColumn('passphoto');
         });
     }
 }
