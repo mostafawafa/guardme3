@@ -14,7 +14,7 @@ class CreateAddressTable extends Migration
     {
         Schema::create('address', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('user_id')->after('id');
+            $table->tinyInteger('user_id');
             $table->string('postcode', 20);
             $table->string('houseno', 10);
             $table->string('line1', 150);
