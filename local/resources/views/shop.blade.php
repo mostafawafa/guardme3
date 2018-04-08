@@ -2,10 +2,28 @@
 <html lang="en">
 <head>
 
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
    @include('style')
+
+
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+   <style type="text/css">
+.noborder ul,li { margin:0; padding:0; list-style:none;}
+.noborder .label { color:#000; font-size:16px;}
+.update{
+
+	margin-top:10px
+}
+
+</style>
+
+	<script>
+		   window.verificationConfig =  {
+			  url  : "{{ url('/') }}"
+		  }
+	  </script>
 
 
 
@@ -115,7 +133,7 @@
 
 	<div class="video">
 	<div class="clearfix"></div>
-	<div class="container">
+	<div class="container" >
 
     <div class="row profile">
 		<div class="col-md-3 ">
@@ -314,12 +332,14 @@
                                     </span>
                                 @endif
                                 <!-- Add to your existing form -->
+                                @if(count($address) >0))
                                 <input id="line1" name="line1" class="trackprogress form-control text-input validate[required]" type="text" placeholder="Address line1" value="{{$address[0]->line1}}">
                                 <input id="line2" name="line2" class="trackprogress form-control text-input" type="text" placeholder="Address line2" value="{{$address[0]->line2}}">
                                 <input id="line3" name="line3" class="trackprogress form-control text-input" type="text" placeholder="Address line3" value="{{$address[0]->line3}}">  
                                 <input id="town" name="town" class="trackprogress form-control text-input validate[required]" type="text" placeholder="Town" value="{{$address[0]->citytown}}">             
                                 <input id="country" name="country" class="trackprogress form-control text-input  validate[required]" type="text" placeholder="Country" value="{{$address[0]->country}}">
                                 <input id="postcode" name="postcode" class="trackprogress form-control text-input  validate[required]" type="text" placeholder="Postalcode" value="{{$address[0]->postcode}}">
+                                @endif
                             </div>
                         </div>                    
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -334,6 +354,46 @@
                                 <input id="phone" type="text" class="trackprogress form-control validate[required] text-input" value="<?php echo $editprofile[0]->phone;?>" name="phone">
                             </div>
                         </div>
+                                <div id='phoneVue'>
+						 <div>
+							 <h4 class="text-center page-title">
+								 <i class="fa fa-phone"></i>
+				 
+								 <template v-if="action === 'new'"> Phone verification</template>
+								 <template v-if="action === 'unbind'"> Remove phone number</template>
+								 <template v-if="action === 'confirm'"> SMS Confirmation</template>
+							 </h4>
+						 </div>
+				 
+										 <div class="form-group">
+											 <label class="control-label col-md-4 ">
+												 Phone Number <template v-if="action === 'confirm'">(<a href="#" @click.prevent="change">change</a>)</template>
+											 </label>
+											 <div class="col-md-6" >
+												 <input class="form-control" type="text" v-model="phone"
+														:disabled="action === 'unbind' || (action === 'confirm' && user.phone_verified)" />
+											 </div>
+										 </div>
+				 
+										 <div v-if="action === 'confirm'"  class="form-group" id="confirmation-code">
+										 <template v-if="action === 'confirm'">
+											 <label  class="control-label col-md-4">Confirmation code</label>
+											 <div class="col-md-6">
+												 <input class="form-control" type="text" v-model="code" />
+											 </div>
+										 </template>
+										 </div>
+										 <div class="form-group">
+
+									 <div class=" col-md-6 col-md-offset-4">
+									 <a href="#" @click.prevent="send" class="btn btn-primary text" >
+										 <template v-if="action === 'confirm'">OK!</template>
+										 <template v-else-if="action === 'unbind'">Remove Phone Number</template>
+										 <template v-else-if="action === 'new'">Send confirmation code</template>
+									 </a>
+									 </div>
+										 </div>
+                                         </div>
                         <div class="form-group">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
                             <div class="col-md-6">
@@ -564,8 +624,11 @@
                         <input type="hidden" name="usertype" value="<?php echo $editprofile[0]->admin;?>">                
                         <input type="hidden" name="savepassword" value="<?php echo $editprofile[0]->password;?>">						
                         <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
+                        @if(count($address) >0))
+
                         <input type="hidden" id="addresslat" name="addresslat" value="{{$address[0]->latitude}}">  
                         <input type="hidden" id="addresslong" name="addresslong" value="{{$address[0]->longitude}}">
+                    @endif
                     </form>
                 </div>
             </div>
@@ -756,5 +819,7 @@
 	   <div class="clearfix"></div>
 
       @include('footer')
+        <script src="{{ asset('js/vue_axios.js') }}"></script>
+	<script src="{{ asset('js/phone.min.js') }}"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@
 	 </div>
 		 
 	 
-	<div class="container" id='phone'>
+	<div class="container" id='phoneVue'>
         @yield('content')
 	
 	</div>

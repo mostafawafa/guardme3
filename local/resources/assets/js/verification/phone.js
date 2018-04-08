@@ -1,5 +1,5 @@
 new window.Vue({
-    el: '#phone',
+    el: '#phoneVue',
 
     data() {
         return {

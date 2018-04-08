@@ -16,16 +16,9 @@
 
 	margin-top:10px
 }
-.page-title{
-	margin-bottom: 20px
-}
+
 </style>
 
-	<script>
-		   window.verificationConfig =  {
-			  url  : "{{ url('/') }}"
-		  }
-	  </script>
 
 
 
@@ -60,7 +53,7 @@
 	<div class="headerbg">
 	 <div class="col-md-12" align="center"><h1>Freelancer Profile</h1></div>
 	 </div>
-	<div class="container" id='phone'>
+	<div class="container" >
 		<div style="margin-top: 20px;"></div>
 		@if ($errors->any())
     <div class="alert alert-danger">
@@ -83,7 +76,6 @@
 
 
 	@include('shared.message')
-
 
     <div class="row profile">
 		<div class="col-md-3 ">
@@ -243,46 +235,6 @@
 						<input type="hidden" name="savepassword" value="<?php echo $editprofile[0]->password;?>">
 
 						 <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
-
-						 <div>
-							 <h4 class="text-center page-title">
-								 <i class="fa fa-phone"></i>
-				 
-								 <template v-if="action === 'new'"> Phone verification</template>
-								 <template v-if="action === 'unbind'"> Remove phone number</template>
-								 <template v-if="action === 'confirm'"> SMS Confirmation</template>
-							 </h4>
-						 </div>
-				 
-										 <div class="form-group">
-											 <label class="control-label col-md-4 ">
-												 Phone Number <template v-if="action === 'confirm'">(<a href="#" @click.prevent="change">change</a>)</template>
-											 </label>
-											 <div class="col-md-6" >
-												 <input class="form-control" type="text" v-model="phone"
-														:disabled="action === 'unbind' || (action === 'confirm' && user.phone_verified)" />
-											 </div>
-										 </div>
-				 
-										 <div  class="form-group " id="confirmation-code">
-										 <template v-if="action === 'confirm'">
-											 <label  class="control-label col-md-4">Confirmation code</label>
-											 <div class="col-md-6">
-												 <input class="form-control" type="text" v-model="code" />
-											 </div>
-										 </template>
-										 </div>
-										 <div class="form-group">
-
-									 <div class="col-md-6 col-md-offset-4">
-									 <a href="#" @click.prevent="send" class="btn btn-primary text" >
-										 <template v-if="action === 'confirm'">OK!</template>
-										 <template v-else-if="action === 'unbind'">Remove Phone Number</template>
-										 <template v-else-if="action === 'new'">Send confirmation code</template>
-									 </a>
-									 </div>
-										 </div>
-							
 						
 
 		
@@ -363,7 +315,6 @@
 
 
 	  @include('footer')
-	  <script src="{{ asset('js/vue_axios.js') }}"></script>
-	<script src="{{ asset('js/phone.min.js') }}"></script>
+
 </body>
 </html>
