@@ -20,36 +20,14 @@ class VerificationController extends Controller
         $userId = filter_var($request->get('uid'), FILTER_VALIDATE_INT);
 
         if (! is_int($userId)) {
-            return response()->json([
-                'data' => [],
-                'meta' => [
-                    'msg' => 'BAD_REQUEST',
-                    'status' => 400
-                ]
-            ], 400);
+            throw new \Exception("UID param is required and should be in integer");
         }
 
-        try {
-            $user = User::findOrFail($userId);
+        $user = User::findOrFail($userId);
 
-            return response()->json([
-                'data' => [
-                    'is_verified' => $user->verified ? true : false
-                ],
-                'meta' => [
-                    'msg' => 'OK',
-                    'status' => 200
-                ]
-            ]);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json([
-                'data' => [],
-                'meta' => [
-                    'msg' => 'USER_NOT_FOUND',
-                    'status' => 404
-                ]
-            ], 404);
-        }
+        return response()->json([
+            'is_verified' => $user->verified ? true : false
+        ]);
     }
 
     /**
@@ -68,28 +46,22 @@ class VerificationController extends Controller
             $user->processVerify();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'data' => [],
-                'meta' => [
-                    'msg' => 'USER_NOT_FOUND',
-                    'status' => 404
-                ]
-            ], 404);
+                'status'  => 'error',
+                'type'    => 'user_not_found',
+                'message' => 'The given User ID is not found.'
+            ], 400);
         } catch (\Responsive\Exceptions\Auth\UserIsVerifiedException $e) {
             return response()->json([
-                'data' => [],
-                'meta' => [
-                    'msg' => 'ALREADY_VERIFIED',
-                    'status' => 202
-                ]
-            ], 202);
+                'status'  => 'error',
+                'type'    => 'already_verified',
+                'message' => $e->getMessage()
+            ], 400);
         }
 
         return response()->json([
-            'data' => $user,
-            'meta' => [
-                'msg' => 'OK',
-                'status' => 200
-            ]
+            'status'  => 'success',
+            'type'    => 'verified',
+            'message' => 'Your account has been successfully verified.'
         ], 200);
     }
 
@@ -109,20 +81,16 @@ class VerificationController extends Controller
             $user->setAsUnverified();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'data' => [],
-                'meta' => [
-                    'msg' => 'USER_NOT_FOUND',
-                    'status' => 404
-                ]
-            ], 404);
+                'status'  => 'error',
+                'type'    => 'user_not_found',
+                'message' => 'The given User ID is not found.'
+            ], 400);
         }
 
         return response()->json([
-            'data' => $user,
-            'meta' => [
-                'msg' => 'OK',
-                'status' => 200
-            ]
+            'status'  => 'success',
+            'type'    => 'unverified',
+            'message' => 'Your account has been successfully unverified.'
         ], 200);
     }
 }
