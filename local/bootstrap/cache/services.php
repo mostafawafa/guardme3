@@ -26,10 +26,11 @@
     22 => 'Collective\\Html\\HtmlServiceProvider',
     23 => 'Intervention\\Image\\ImageServiceProvider',
     24 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    25 => 'Responsive\\Providers\\AppServiceProvider',
-    26 => 'Responsive\\Providers\\AuthServiceProvider',
-    27 => 'Responsive\\Providers\\EventServiceProvider',
-    28 => 'Responsive\\Providers\\RouteServiceProvider',
+    25 => 'Laravel\\Passport\\PassportServiceProvider',
+    26 => 'Responsive\\Providers\\AppServiceProvider',
+    27 => 'Responsive\\Providers\\AuthServiceProvider',
+    28 => 'Responsive\\Providers\\EventServiceProvider',
+    29 => 'Responsive\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -44,10 +45,11 @@
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Intervention\\Image\\ImageServiceProvider',
-    11 => 'Responsive\\Providers\\AppServiceProvider',
-    12 => 'Responsive\\Providers\\AuthServiceProvider',
-    13 => 'Responsive\\Providers\\EventServiceProvider',
-    14 => 'Responsive\\Providers\\RouteServiceProvider',
+    11 => 'Laravel\\Passport\\PassportServiceProvider',
+    12 => 'Responsive\\Providers\\AppServiceProvider',
+    13 => 'Responsive\\Providers\\AuthServiceProvider',
+    14 => 'Responsive\\Providers\\EventServiceProvider',
+    15 => 'Responsive\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
