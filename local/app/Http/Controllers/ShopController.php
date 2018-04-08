@@ -11,6 +11,9 @@ use Image;
 use Mail;
 use Illuminate\Support\Facades\Validator;
 
+use Responsive\Country;
+use Responsive\Address;
+
 class ShopController extends Controller
 {
     /**
@@ -121,10 +124,12 @@ class ShopController extends Controller
 			  ->get();
 
 
+                $countries = Country::all();
+                $address = Address::where('user_id', Auth::user()->id)->get();
 
 		$data = array('time' => $time, 'days' =>  $days, 'daytxt' => $daytxt, 'shopcount' => $shopcount, 'shop' => $shop, 'stime' => $stime,
 		'etime' => $etime, 'lev' => $lev, 'sel' => $sel, 'viewservice' => $viewservice, 'setting' => $setting, 'rating_count' => $rating_count, 'rating' => $rating);
-            return view('shop', compact('data', 'userid', 'editprofile', 'data'))->with($data);
+            return view('shop', compact('data', 'userid', 'editprofile', 'data','countries','address'))->with($data);
     }
 
 

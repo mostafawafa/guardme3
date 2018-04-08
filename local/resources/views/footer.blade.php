@@ -189,6 +189,8 @@ $setid=1;
 	
 	
 	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://getaddress.io/js/jquery.getAddress-2.0.7.min.js"></script>
 	
 	
 	<script src="<?php echo $url;?>/js/jquery.multiselect.js"></script>
@@ -197,6 +199,64 @@ $('#langOpt').multiselect({
     columns: 1,
     placeholder: 'Select Services'
 });
+var pgsVal = 0;
+$( ".trackprogress" ).each(function(i, obj) {
+    if($(this).val().length >0){
+        pgsVal += 4;
+    }
+});
+console.log(pgsVal);
+$( "#progressbar" ).progressbar({
+    value: pgsVal,
+    create: function(event, ui) {$(this).find('.ui-widget-header').css({'background-color':'#5cb85c'})}
+});
+$('.trackprogress').change(function() {
+    var pbVal = 0;
+    $( ".trackprogress" ).each(function(i, obj) {
+        if($(this).val().length >0){
+            pbVal += 4;
+        }
+    });
+    $( "#progressbar" ).progressbar( "option", "value", pbVal );
+    return false; 
+});
+$('#postcode_lookup').getAddress({
+    api_key: 'ZTIFqMuvyUy017Bek8SvsA12209',
+    input_id : 'address_id',
+    input_name : 'address_id',
+    input_class :'form-control validate[required]',
+    button_class : 'btn btn-primary',
+    dropdown_class:'form-control',
+    <!--  Or use your own endpoint - api_endpoint:https://your-web-site.com/getAddress, -->
+    output_fields:{
+        line_1: '#line1',
+        line_2: '#line2',
+        line_3: '#line3',
+        post_town: '#town',
+        county: '#county',
+        postcode: '#postcode'
+    },
+<!--  Optionally register callbacks at specific stages -->                                                                                                               
+    onLookupSuccess: function(data){/* Your custom code */
+        console.log(data);
+        $('#addresslat').val(data.latitude);
+        $('#addresslong').val(data.longitude);
+        $('#country').val('UK');
+    },
+    onLookupError: function(){/* Your custom code */},
+    onAddressSelected: function(elem,index){/* Your custom code */}
+});
+$("select#nationality").change(function(){    
+    $( "select#nationality option:selected").each(function(){        
+        if($(this).attr("value")=="229"){
+            $("#visa_no_field").hide();
+            $("#niutr_no_field").show();
+        } else {
+            $("#visa_no_field").show();
+            $("#niutr_no_field").hide();
+        }
+    });
+}).change();
 </script>
 
 	<?php /* ?><script src="{{ asset('js/app.js') }}"></script><?php */?>

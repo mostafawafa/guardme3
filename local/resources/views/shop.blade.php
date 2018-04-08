@@ -5,7 +5,7 @@
 
 
    @include('style')
-
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 
@@ -40,9 +40,9 @@
 
 	<div class="video">
 	<div class="clearfix"></div>
-	<div class="headerbg">
+	<!--<div class="headerbg">
 	 <div class="col-md-12" align="center"><h1>Account</h1></div>
-	 </div>
+	 </div>-->
 	<div class="">
 
 
@@ -58,7 +58,7 @@
 	 <div class="profile shop">
 
 
-		<div class="fb-profile">
+		<!--<div class="fb-profile">
 	<?php
 					   $shopheader="/shop/";
 						$path ='/local/images'.$shopheader.$shop[0]->cover_photo;
@@ -80,7 +80,7 @@
             <h1><?php echo $shop[0]->shop_name;?></h1>
             <p><?php echo $shop[0]->address;?></p>
         </div>
-    </div>
+    </div>-->
 
 		<div class="container">
 	<div class="row">
@@ -96,7 +96,7 @@
 
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a href="#inbox" data-toggle="tab"><span class="lnr lnr-user blok"></span> Freelancer Profile</a></li>
-      <li><a href="#sent" data-toggle="tab"><span class="lnr lnr-cog blok"></span> Employer Profile</a></li>
+      <li><a href="#sent" data-toggle="tab"><span class="lnr lnr-apartment blok"></span> Employer Profile</a></li>
       <li><a href="#assignment" data-toggle="tab"><span class="lnr lnr-star blok"></span> Reviews</a></li>
 
     </ul>
@@ -237,16 +237,21 @@
 
 	@endif
 
-			   <div class="panel-body">
+                <div class="panel-body">
+                    <div class="alert alert-warning" role="alert">
+                        Please complete your profile below. You will only be eligible to apply for work after your profile is complete and your documents are approved.
+                    </div>
+                    <div id="progressbar"></div>
+                    
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('dashboard') }}" id="formID" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                <fieldset>
+                    <legend>Personal Details:</legend>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">                            
                             <label for="name" class="col-md-4 control-label">Username</label>
-
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control validate[required] text-input" name="name" value="<?php echo $editprofile[0]->name;?>" autofocus>
-
+                                <input id="name" type="text" class="trackprogress form-control validate[required] text-input" name="name" value="<?php echo $editprofile[0]->name;?>" autofocus>
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -254,12 +259,36 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                            <label for="firstname" class="col-md-4 control-label">First Name</label>
+                            <div class="col-md-6">
+                                <input id="firstname" type="text" class="trackprogress form-control validate[required] text-input" name="firstname" value="<?php echo $editprofile[0]->firstname;?>" autofocus>
+                                @if ($errors->has('firstname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('firstname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                            <label for="lastname" class="col-md-4 control-label">Last Name</label>
 
+                            <div class="col-md-6">
+                                <input id="lastname" type="text" class="trackprogress form-control validate[required] text-input" name="lastname" value="<?php echo $editprofile[0]->lastname;?>" autofocus>
+
+                                @if ($errors->has('lastname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control validate[required,custom[email]] text-input" name="email" value="<?php echo $editprofile[0]->email;?>">
+                                <input id="email" type="text" class="trackprogress form-control validate[required,custom[email]] text-input" name="email" value="<?php echo $editprofile[0]->email;?>">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -268,80 +297,275 @@
                                 @endif
                             </div>
                         </div>
-
+                        <style>
+                            #address_id{
+                                width: 60%;
+                                float: left;
+                            }
+                        </style>
+                        <div class="form-group{{ $errors->has('address_id') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Address</label>
+                            <div class="col-md-6">
+                                <div id="postcode_lookup"></div>
+                                <div>Please fetch your address detail using your postcode</div>
+                                @if ($errors->has('address_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address_id') }}</strong>
+                                    </span>
+                                @endif
+                                <!-- Add to your existing form -->
+                                <input id="line1" name="line1" class="trackprogress form-control text-input validate[required]" type="text" placeholder="Address line1" value="{{$address[0]->line1}}">
+                                <input id="line2" name="line2" class="trackprogress form-control text-input" type="text" placeholder="Address line2" value="{{$address[0]->line2}}">
+                                <input id="line3" name="line3" class="trackprogress form-control text-input" type="text" placeholder="Address line3" value="{{$address[0]->line3}}">  
+                                <input id="town" name="town" class="trackprogress form-control text-input validate[required]" type="text" placeholder="Town" value="{{$address[0]->citytown}}">             
+                                <input id="country" name="country" class="trackprogress form-control text-input  validate[required]" type="text" placeholder="Country" value="{{$address[0]->country}}">
+                                <input id="postcode" name="postcode" class="trackprogress form-control text-input  validate[required]" type="text" placeholder="Postalcode" value="{{$address[0]->postcode}}">
+                            </div>
+                        </div>                    
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
-
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control"  name="password" value="">
-
-
+                                <input id="password" type="password" class="trackprogress form-control"  name="password" value="">
+                            </div>
+                        </div>		
+                        <div class="form-group">
+                            <label for="phoneno" class="col-md-4 control-label">Phone Number</label>
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="trackprogress form-control validate[required] text-input" value="<?php echo $editprofile[0]->phone;?>" name="phone">
                             </div>
                         </div>
-
-
-
-						<input type="hidden" name="savepassword" value="<?php echo $editprofile[0]->password;?>">
-
-						 <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
-
-						 <div class="form-group">
-                            <label for="phoneno" class="col-md-4 control-label">Phone No</label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control validate[required] text-input" value="<?php echo $editprofile[0]->phone;?>" name="phone">
-                            </div>
-                        </div>
-
-
-
-						<div class="form-group">
+                        <div class="form-group">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
-
                             <div class="col-md-6">
-							<select name="gender" class="form-control validate[required] text-input">
-
-							  <option value=""></option>
-							   <option value="male" <?php if($editprofile[0]->gender=='male'){?> selected="selected" <?php } ?>>Male</option>
-							   <option value="female" <?php if($editprofile[0]->gender=='female'){?> selected="selected" <?php } ?>>Female</option>
-							</select>
-
+                                <select name="gender" class="trackprogress form-control validate[required] text-input">							  
+                                        <option value=""></option>
+                                        <option value="male" <?php if($editprofile[0]->gender=='male'){?> selected="selected" <?php } ?>>Male</option>
+                                        <option value="female" <?php if($editprofile[0]->gender=='female'){?> selected="selected" <?php } ?>>Female</option>
+                                </select>
+                            </div>
+                        </div>	
+                        <div class="form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
+                            <label for="dob" class="col-md-4 control-label">DOB</label>
+                            <div class="col-md-6">
+                                <?php                            
+                                    echo Form::input('date', 'dob', old('dob', $editprofile[0]->dob), ['class' => 'trackprogress validate[required] form-control', 'placeholder' => 'dob']);
+                                ?>
+                                @if ($errors->has('dob'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('dob') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-
-
-
-
-						<div class="form-group">
-                            <label for="phoneno" class="col-md-4 control-label">Photo</label>
-
+                        <div class="form-group">
+                            <label for="photo" class="col-md-4 control-label">Avatar</label>
                             <div class="col-md-6">
-                                <input type="file" id="photo" name="photo" class="form-control">
-								@if ($errors->has('photo'))
+                                <input type="file" id="photo" name="photo" class="trackprogress form-control {{empty($editprofile[0]->photo)?'validate[required]':''}}" value="{{old('photo', $editprofile[0]->photo)}}">
+                                @if ($errors->has('photo'))
                                     <span class="help-block" style="color:red;">
                                         <strong>{{ $errors->first('photo') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
-
-						<input type="hidden" name="currentphoto" value="<?php echo $editprofile[0]->photo;?>">
-
-
-						<input type="hidden" name="usertype" value="<?php echo $editprofile[0]->admin;?>">
-
-
+                </fieldset>
+                <fieldset>
+                    <legend>Nationality and Work Details</legend>
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-							<?php if(config('global.demosite')=="yes"){?><button type="button" class="btn btn-primary btndisable">Update</button> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span><?php } else { ?>
-
-                                <button type="submit" class="btn btn-primary">
-                                    Update
-                                </button>
-							<?php } ?>
+                            <label for="nationality" class="col-md-4 control-label">Nationality</label>
+                            <div class="col-md-6">
+                                    <select name="nationality" id="nationality" class="trackprogress form-control text-input">
+                                        <option value=""></option>
+                                        @if($countries->count())
+                                            @foreach($countries as $country)
+                                                <option value="{{$country->id}}" <?php if($country->id==$editprofile[0]->nation_id){?> selected="selected" <?php } ?>>{{$country->name}}</option>                                                    
+                                            @endforeach
+                                        @endif
+                                    </select>                               
                             </div>
                         </div>
+                        <div id="visa_no_field" class="form-group{{ $errors->has('visa_no') ? ' has-error' : '' }}">
+                            <label for="visa_no" class="col-md-4 control-label">Visa Number</label>
+                            <div class="col-md-6">
+                                <input id="visa_no" type="text" class="trackprogress form-control text-input" name="visa_no" value="<?php echo $editprofile[0]->visa_no;?>">
+                                @if ($errors->has('visa_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('visa_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div id="niutr_no_field" class="form-group{{ $errors->has('niutr_no') ? ' has-error' : '' }}">
+                            <label for="niutr_no" class="col-md-4 control-label">NI or UTR Number</label>
+                            <div class="col-md-6">
+                                <input id="niutr_no" type="text" class="form-control text-input" name="niutr_no" value="<?php echo $editprofile[0]->niutr_no;?>">
+                                @if ($errors->has('niutr_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('niutr_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('work_category') ? ' has-error' : '' }}">
+                            <label for="work_category" class="col-md-4 control-label">Work Category</label>
+                            <div class="col-md-6">
+                                @if ($editprofile[0]->work_category == 1)
+                                    {{ Form::radio('category', 1, true) }} Door Supervisor<br>
+                                @else
+                                    {{ Form::radio('category', 1) }} Door Supervisor<br>
+                                @endif
+                                @if ($editprofile[0]->work_category == 2)
+                                    {{ Form::radio('category', 2, true) }} Security Guard<br>
+                                @else
+                                    {{ Form::radio('category', 2) }} Security Guard<br>
+                                @endif
+                                @if ($editprofile[0]->work_category == 3)
+                                    {{ Form::radio('category', 3, true) }} Close Protection
+                                @else
+                                    {{ Form::radio('category', 3) }} Close Protection
+                                @endif                                
+                            </div>
+                        </div>                    
+                        <div class="form-group{{ $errors->has('sia_license') ? ' has-error' : '' }}">
+                            <label for="sia_licence" class="col-md-4 control-label">SIA Number</label>
+                            <div class="col-md-6">
+                                <input id="sia_licence" type="text" class="trackprogress form-control text-input" name="sia_licence" value="<?php echo old('sia_licence',$editprofile[0]->sia_licence);?>">
+
+                                @if ($errors->has('sia_licence'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('sia_licence') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('sia_expirydate') ? ' has-error' : '' }}">
+                            <label for="sia_expirydate" class="col-md-4 control-label">SIA Expiry</label>
+                            <div class="col-md-6">
+                            <?php
+                                echo Form::input('date', 'sia_expirydate', old('siaexpiry',$editprofile[0]->sia_expirydate), ['class' => 'trackprogress form-control', 'placeholder' => 'Expiry Date']);
+                            ?>
+                            </div>
+                        </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Verification Documents</legend>
+                        <div class="form-group">
+                            <label for="passphoto" class="col-md-4 control-label">Passport photograph</label>
+                            <div class="col-md-6">
+                                <input type="file" id="passphoto" name="passphoto" class="trackprogress form-control">
+                                @if ($errors->has('passphoto'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('passphoto') }}</strong>
+                                    </span>
+                                @endif
+                                @if (!empty($editprofile[0]->passphoto))
+                                    <span class="info-block" style="color:green;">
+                                        <strong>Document already uploaded</strong>
+                                    </span>
+                                @endif                                
+                            </div>
+                        </div>
+						
+                        <div class="form-group">
+                            <label for="pass_page" class="col-md-4 control-label">Passport information page</label>
+                            <div class="col-md-6">
+                                <input type="file" id="pass_page" name="pass_page" class="trackprogress form-control">
+                                @if ($errors->has('pass_page'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('pass_page') }}</strong>
+                                    </span>
+                                @endif
+                                @if (!empty($editprofile[0]->pass_page))
+                                    <span class="info-block" style="color:green;">
+                                        <strong>Document already uploaded</strong>
+                                    </span>
+                                @endif                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="visa_page" class="col-md-4 control-label">Visa page or Residency stamp</label>
+                            <div class="col-md-6">
+                                <input type="file" id="visa_page" name="visa_page" class="trackprogress form-control">
+                                @if ($errors->has('visa_page'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('visa_page') }}</strong>
+                                    </span>
+                                @endif
+                                @if (!empty($editprofile[0]->visa_page))
+                                    <span class="info-block" style="color:green;">
+                                        <strong>Document already uploaded</strong>
+                                    </span>
+                                @endif                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sia_doc" class="col-md-4 control-label">SIA License</label>
+                            <div class="col-md-6">
+                                <input type="file" id="sia_doc" name="sia_doc" class="trackprogress form-control">
+                                @if ($errors->has('sia_doc'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('sia_doc') }}</strong>
+                                    </span>
+                                @endif
+                                @if (!empty($editprofile[0]->sia_doc))
+                                    <span class="info-block" style="color:green;">
+                                        <strong>Document already uploaded</strong>
+                                    </span>
+                                @endif                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_proof" class="col-md-4 control-label">Proof of Address</label>
+                            <div class="col-md-6">
+                                <input type="file" id="address_proof" name="address_proof" class="trackprogress form-control">
+                                @if ($errors->has('address_proof'))
+                                    <span class="help-block" style="color:red;">
+                                        <strong>{{ $errors->first('address_proof') }}</strong>
+                                    </span>
+                                @endif
+                                 @if (!empty($editprofile[0]->address_proof))
+                                    <span class="info-block" style="color:green;">
+                                        <strong>Document already uploaded</strong>
+                                    </span>
+                                @endif                                
+                           </div>
+                        </div>						
+                    </fieldset>
+                    <div class="form-group">
+                        <div class="alert alert-info" role="alert">
+                            After uploading, please take your Passport and SIA licence to the nearest post office for verification. This process will cost you £8.50.<br>
+                            Once certified, send a copy of the document to your our Licenced Partner. Visit the verification page for more information.
+                        </div>
+                    </div>
+                        <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="agree" class="trackprogress validate[required]" value="agree" /> I Agree to the GuardME terms and conditions
+                                    </label>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <?php if(config('global.demosite')=="yes"){?>
+                                    <button type="button" class="btn btn-primary btndisable">Update</button> <span class="disabletxt">( <?php echo config('global.demotxt');?> )</span>
+                                <?php } else { ?>
+                                    <button type="submit" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <input type="hidden" name="currentphoto" value="<?php echo $editprofile[0]->photo;?>">
+                        <input type="hidden" name="currentpassphoto" value="<?php echo $editprofile[0]->passphoto;?>">
+                        <input type="hidden" name="currentaddressproof" value="<?php echo $editprofile[0]->address_proof;?>">
+                        <input type="hidden" name="currentsiadoc" value="<?php echo $editprofile[0]->sia_doc;?>">
+                        <input type="hidden" name="currentvisapage" value="<?php echo $editprofile[0]->visa_page;?>">
+                        <input type="hidden" name="currentpasspage" value="<?php echo $editprofile[0]->pass_page;?>">
+                        <input type="hidden" name="usertype" value="<?php echo $editprofile[0]->admin;?>">                
+                        <input type="hidden" name="savepassword" value="<?php echo $editprofile[0]->password;?>">						
+                        <input type="hidden" name="id" value="<?php echo $editprofile[0]->id; ?>">
+                        <input type="hidden" id="addresslat" name="addresslat" value="{{$address[0]->latitude}}">  
+                        <input type="hidden" id="addresslong" name="addresslong" value="{{$address[0]->longitude}}">
                     </form>
                 </div>
             </div>
@@ -460,7 +684,7 @@
     </div>
 
 	<div class="clearfix"></div>
-
+        <!--
 	<div class="form-group">
 		<div class="row">
 		<div class="col-md-12">
@@ -473,7 +697,7 @@
 
 		</div>
 	</div>
-
+        -->
 
 
 
